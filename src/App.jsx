@@ -5,6 +5,11 @@ import Home from "./Pages/Home";
 import "./App.css";
 import Detail from "./Pages/Blog";
 import Categories from "./Pages/CatogeriesDetail";
+import CustmerProfile from "./Pages/Custmer/CustmerProfile";
+import News from "./Pages/Custmer/News/News";
+import RequestList from "./Pages/Custmer/Request/Request";
+import Saved from "./Pages/Custmer/Saved/Saved";
+import Tilored from "./Pages/Custmer/Tilored/Tilored";
 
 
 function App() {
@@ -18,6 +23,21 @@ function App() {
     },   {
       path: "/CategoriesDetail/:title/:text",
       element: <Categories />,
+    },  {
+      path: "/CustmerProfile",
+      element: <CustmerProfile />,
+    },{
+      path: "/News",
+      element: <News />,
+    },{
+      path: "/Request",
+      element: <RequestList />,
+    },{
+      path: "/Saved",
+      element: <Saved />,
+    },{
+      path: "/Tilored",
+      element: <Tilored />,
     },
     // {
     //   path: "/takeTest",
