@@ -16,6 +16,7 @@ const Home = () => {
         { text: "Pharmaceuticals", link: "/CategoriesDetail" },
         { text: "Public health", link: "/CategoriesDetail" },
         { text: "Medical devices", link: "/CategoriesDetail" },
+        { text: "Cancer", link: "/CategoriesDetail" },
         { text: "Health policy reforms", link: "/CategoriesDetail" },
       ],
     },
@@ -64,6 +65,7 @@ const Home = () => {
     {
       title: 'Basic',
       features: [
+        'Email alerts',
         'AI driven monitoring reports to your interests.',
         'News Flashes from current event.',
       ],
@@ -72,6 +74,7 @@ const Home = () => {
     {
       title: 'Professional',
       features: [
+        'Email alerts',
         'AI driven monitoring reports to your interests.',
         'News Flashes from current event.',
         'Personalized reports for your needs',
@@ -170,7 +173,7 @@ const Home = () => {
               <div className="hidden md:block">
                 <div className="mt-5">
                   <img
-                    src="/Rectangle 3.png"
+                    src="/Rectangle 322.png"
                     alt="hero-one"
                     className=" mx-auto"
                   />
@@ -182,16 +185,11 @@ const Home = () => {
                   Who are we
                 </h2>
                 <p className="lg:text-xl font-normal text-ptheme text-justify">
-                  The European Union's policy landscape is intricate and ever-evolving, making it challenging for businesses and individuals to stay informed and compliant. Recognizing this need, EUaffairs aims to provide a subscription based service that offers tailored monitoring of EU policies in key areas such as Healthcare, Sustainability, Economy, and Politics. Through a user-friendly website, EUaffairs will deliver customized reports and updates, empowering its subscribers with timely, relevant, and comprehensive information to make informed decisions. The primary mission of EUaffair is to empower businesses and individuals by providing them with the tools and insights necessary to navigate the complex EU regulatory environment.
+                EUaffairs offers a subscription-based service to help businesses and individuals stay informed and compliant with the ever-evolving EU policy landscape. We focus on Healthcare, Sustainability, Economy, and Politics. Through our user-friendly website, we deliver timely, relevant, and comprehensive reports tailored to your needs. Our mission is to empower users with the insights necessary to make informed decisions and effectively navigate the complex EU regulatory environment.
                 </p>
 
                 <div>
-                  <button
-                    to="/takeTest"
-                    className="px-[100px] bg-theme text-white  py-3 border border-theme rounded-full  hover:bg-transparent hover:text-theme duration-200"
-                  >
-                    Learn More  &rarr;
-                  </button>
+          
                 </div>
 
               </div>
@@ -256,7 +254,7 @@ const Home = () => {
       <section className="pb-20">
         <div className="text-center pb-20">
           <h2 className="text-theme text-3xl md:text-4xl font-semibold">
-            Service We Provide
+          Our Services
           </h2>
           <p className="lg:text-xl font-normal text-secColor ">
 
