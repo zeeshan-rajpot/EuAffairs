@@ -21,7 +21,7 @@ const Login = ({ toggle }) => {
     };
 
 
-    const handleAdmin = () => {
+    const handleForget = () => {
         setShowNext(true);
     };
 
@@ -89,7 +89,7 @@ const Login = ({ toggle }) => {
                             </div>
 
                             <div className='text-end'>
-                                <p className="text-sm text-gray-500 font-semibold">
+                                <p  onClick={handleForget} className="text-sm text-gray-500 font-semibold">
                                     Forget Password
                                 </p>
                             </div>
@@ -100,9 +100,10 @@ const Login = ({ toggle }) => {
                             >
                                 Login
                             </Link>
+                            <br />
 
                             <button
-                                onClick={handleAdmin}
+                                // onClick={handleAdmin}
                                 type="submit"
                                 className="w-[75%] m-auto my-5 mt-10 text-theme bg-secColor font-medium rounded-3xl  px-5 py-2.5 text-center  hover:bg-transparent hover:text-login duration-200 border border-secColor text-lg"
                             >

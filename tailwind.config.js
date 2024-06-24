@@ -31,5 +31,10 @@ export default({
       },
     },
   },
+  variants: {
+    extend: {
+      before: ['hover', 'focus'], // Add variants if needed
+    },
+  },
   plugins: [],
 });
