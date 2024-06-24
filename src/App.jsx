@@ -15,6 +15,7 @@ import Users from "./Pages/Admin/Users/Users";
 import Reoprt from "./Pages/Admin/Report/Reoprt";
 import Article from "./Pages/Article/Article";
 import NewsFlash from "./Pages/Admin/NewsFlash/NewsFlash";
+import AdminRequest from "./Pages/Admin/AdminRequest/AdminRequest";
 
 function App() {
   const router = createBrowserRouter([
@@ -69,6 +70,9 @@ function App() {
     {
       path: "/newsFlash",
       element: <NewsFlash />,
+    }, {
+      path: "/AdminRequest",
+      element: <AdminRequest />,
     },
   ]);
 
