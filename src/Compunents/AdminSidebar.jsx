@@ -3,9 +3,7 @@ import { NavLink } from "react-router-dom";
 import clsx from "clsx";
 import "./sidebar.css";
 
-
-const Sidebar = (props) => {
-  const [activeTab, setActiveTab] = useState(props.actTab);
+const AdminSidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isbtnOpen, setIsbtnOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -31,7 +29,6 @@ const Sidebar = (props) => {
             src="/EU affairs.png"
             className="inline-flex items-center px-2 mt-1 ms-3 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 w-[194px] "
           />
-       
         </div>
         <button
           onClick={toggleSidebar}
@@ -84,7 +81,7 @@ const Sidebar = (props) => {
           <ul className="space-y-3 font-medium flex flex-col w-[90%] m-auto mt-24">
             <li>
               <NavLink
-                to="/CustmerProfile"
+                to="/overview"
                 className={({ isActive }) =>
                   clsx(
                     "flex items-center py-1 rounded-2xl text-gray-400 hover:text-theme ",
@@ -95,16 +92,16 @@ const Sidebar = (props) => {
                 }
               >
                 <img
-                  src="/Vector.png"
-                  alt="dashboard_icon"
+                  src="/home_icon.svg"
+                  alt="home_icon"
                   className="w-8 ms-4"
                 />
-                <span className="ms-3 text-lg font-normal">Profile</span>
+                <span className="ms-3 text-lg font-normal">Overview</span>
               </NavLink>
             </li>
             <li>
               <NavLink
-                to="/News"
+                to="/users"
                 className={({ isActive }) =>
                   clsx(
                     "flex items-center py-1 rounded-2xl text-gray-400 hover:text-theme ",
@@ -115,16 +112,16 @@ const Sidebar = (props) => {
                 }
               >
                 <img
-                  src="/News.png"
+                  src="/user_icon.svg"
                   alt="user_icon"
                   className="w-8 ms-4"
                 />
-                <span className="ms-3 text-lg font-normal">News Flash</span>
+                <span className="ms-3 text-lg font-normal">Users</span>
               </NavLink>
             </li>
             <li>
               <NavLink
-                to="/Tilored"
+                to="/report"
                 className={({ isActive }) =>
                   clsx(
                     "flex items-center py-1 rounded-2xl text-gray-400 hover:text-theme ",
@@ -136,15 +133,15 @@ const Sidebar = (props) => {
               >
                 <img
                   src="/Tailored.png"
-                  alt="checkin_icon"
+                  alt="tailored_icon"
                   className="w-8 ms-4"
                 />
-                <span className="ms-3 text-lg font-normal">Tailored</span>
+                <span className="ms-3 text-lg font-normal">Report</span>
               </NavLink>
             </li>
             <li>
               <NavLink
-                to="/Saved"
+                to="/article"
                 className={({ isActive }) =>
                   clsx(
                     "flex items-center py-1 rounded-2xl text-gray-400 hover:text-theme ",
@@ -154,13 +151,13 @@ const Sidebar = (props) => {
                   )
                 }
               >
-                <img src="/save.png" alt="info_icon" className="w-8 ms-4" />
-                <span className="ms-3 text-lg font-normal">Save</span>
+                <img src="/article.svg" alt="info_icon" className="w-8 ms-4" />
+                <span className="ms-3 text-lg font-normal">Article</span>
               </NavLink>
             </li>
             <li>
               <NavLink
-                to="/Request"
+                to="/newsFlash"
                 className={({ isActive }) =>
                   clsx(
                     "flex items-center py-1 rounded-2xl text-gray-400 hover:text-theme ",
@@ -171,11 +168,11 @@ const Sidebar = (props) => {
                 }
               >
                 <img
-                  src="/request.png"
-                  alt="money_icon"
+                  src="/newsFlash.svg"
+                  alt="newsFlash_icon"
                   className="w-8 ms-4"
                 />
-                <span className="ms-3 text-lg font-normal">Request</span>
+                <span className="ms-3 text-lg font-normal">News Flash</span>
               </NavLink>
             </li>
             <li>
@@ -201,4 +198,4 @@ const Sidebar = (props) => {
   );
 };
 
-export default Sidebar;
+export default AdminSidebar;
