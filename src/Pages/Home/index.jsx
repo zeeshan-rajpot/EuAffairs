@@ -119,12 +119,13 @@ const Home = () => {
       <div className=" relative w-100 bg-bghero   bg-no-repeat bg-cover">
         <Navbar />
 
-        <div className="h-[75vh]  w-11/12  2xl:w-4/6   mx-auto text-center flex flex-col items-center justify-center">
-          <h2 className="text-white text-4xl md:text-4xl lg:text-7xl font-semibold ">
-            Stay Informed With{" "}
-          </h2>
-          <h2 className="text-white text-4xl md:text-4xl lg:text-7xl font-semibold md:mt-10">
-            EU Policy Insights
+
+        <div className='h-[85vh]  w-11/12  2xl:w-4/6   mx-auto text-center flex flex-col items-center justify-center'>
+          <h2 className="text-white text-4xl md:text-4xl lg:text-6xl font-semibold ">
+          Your custom policy content, delivered  </h2>
+          <h2 className="text-white text-4xl md:text-4xl lg:text-6xl font-semibold md:mt-10">
+          fast with the precision of AI 
+
           </h2>
           <button className="px-[100px] text-white  py-3 border border-white rounded-full   duration-200 mt-10">
             Get Started
@@ -137,8 +138,12 @@ const Home = () => {
 
       {/* End Hero Section */}
 
-      <div className=" bg-none md:bg-bgEllipse2 bg-no-repeat  bg-right-bottom">
-        <div className="bg-none md:bg-bgellipse  bg-no-repeat  bg-left-bottom">
+
+
+      <div className=' bg-none md:bg-bgEllipse2 bg-no-repeat  bg-right-bottom' id='Whoarewe'>
+
+        <div className='bg-none md:bg-bgellipse  bg-no-repeat  bg-left-bottom'>
+
           <div className=" w-11/12 2xl:w-4/6  py-10  mx-auto ">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 ">
               <div className="hidden md:block">
@@ -146,25 +151,19 @@ const Home = () => {
                   <img
                     src="/Rectangle 322.png"
                     alt="hero-one"
-                    className=" mx-auto"
+                    className=" ms-auto"
                   />
                 </div>
               </div>
 
-              <div className="flex flex-col gap-y-7 py-8  bg-no-repeat">
+              <div className="flex flex-col gap-y-7 py-0 md:py-8  bg-no-repeat">
                 <h2 className="text-theme text-3xl md:text-4xl lg:text-5xl font-semibold">
                   Who are we
                 </h2>
-                <p className="lg:text-xl font-normal text-ptheme text-justify">
-                  EUaffairs offers a subscription-based service to help
-                  businesses and individuals stay informed and compliant with
-                  the ever-evolving EU policy landscape. We focus on Healthcare,
-                  Sustainability, Economy, and Politics. Through our
-                  user-friendly website, we deliver timely, relevant, and
-                  comprehensive reports tailored to your needs. Our mission is
-                  to empower users with the insights necessary to make informed
-                  decisions and effectively navigate the complex EU regulatory
-                  environment.
+
+                <p className="lg:text-xl font-normal text-ptheme text-md text-justify md:text-left">
+                EUaffairs offers a subscription-based service to help businesses and individuals stay informed and compliant with the ever-evolving EU policy landscape. We focus on Healthcare, Sustainability, Economy, and Politics. Through our user-friendly website, we deliver timely, relevant, and comprehensive reports tailored to your needs. Our mission is to empower users with the insights necessary to make informed decisions and effectively navigate the complex EU regulatory environment.
+
                 </p>
 
                 <div></div>
@@ -176,43 +175,41 @@ const Home = () => {
 
       {/* Policy Areas and Subcategories */}
 
-      <section className="md:bg-bgEllipse3 bg-no-repeat  bg-right-top py-20">
-        <div className="text-center">
+      <section className="md:bg-bgEllipse3 bg-no-repeat  bg-right-top pt-20" id='Policy'>
+        
+        <div className="text-center ">
           <h2 className="text-theme text-3xl md:text-3xl font-semibold">
-            Policy Areas and Subcategories
+          Policy Areas of Expertise
           </h2>
+
+          <hr className="border-t-2 border-green-400 my-4 w-60 mx-auto" />
+
         </div>
-        <div className=" w-11/12 md:5/6 lg:5/6 2xl:w-4/6  py-10 lg:pt-36 2xl:py-[55px]  mx-auto">
+        <div className=" w-9/12 md:w-5/6 lg:5/6 2xl:w-4/6  py-10 lg:pt-16 2xl:py-[55px]  mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-12 p-4 gap-7">
-            {categories.map((category, index) => (
-              <div
-                key={index}
-                className="bg-white p-4 rounded-lg shadow-md col-span-3 mt-20 md:mt-10"
-              >
-                <div className="absolute translate-x-[60px] translate-y-[-90px] md:translate-x-[30px]">
-                  <img src={category.img} alt="" className="" />
-                </div>
-                <div className="text-center">
-                  <h2 className="text-xl font-bold mb-4 mt-24 text-theme">
-                    {category.title}
-                  </h2>
-                </div>
-                <ul>
-                  {category.items.map((item, idx) => (
-                    <li key={idx} className="mb-2">
-                      <Link
-                        to={`/CategoriesDetail/${encodeURIComponent(
-                          category.title
-                        )}/${encodeURIComponent(item.text)}`}
-                        className="text-ptheme hover:underline"
-                        rel="noopener noreferrer"
-                      >
-                        {item.text}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+
+          {categories.map((category, index) => (
+        <div key={index} className="bg-white p-4 rounded-lg shadow-md col-span-3 mt-20 md:mt-10">
+          <div className="absolute translate-x-[60px] translate-y-[-90px] md:translate-x-[30px] ">
+            <img src={category.img} alt="" className="w-[70%] md:w-[100%]" />
+          
+        
+          </div>
+          <div className="text-center">
+            <h2 className="text-xl font-bold mb-4 mt-32 md:mt-32px text-theme">{category.title}</h2>
+          </div>
+          <ul className="custom-list md:ms-10 ms-10 ">
+            {category.items.map((item, idx) => (
+              <li key={idx} className="mb-2">
+                <Link
+                  to={`/CategoriesDetail/${encodeURIComponent(category.title)}/${encodeURIComponent(item.text)}`}
+                  className="text-ptheme hover:underline"
+                  rel="noopener noreferrer"
+                >
+                  {item.text}
+                </Link>
+              </li>
+
             ))}
           </div>
         </div>
@@ -220,8 +217,14 @@ const Home = () => {
 
       {/* Policy Areas and Subcategories End */}
 
-      <section className="pb-20">
-        <div className="text-center pb-20">
+
+
+
+
+
+      <section className="pb-20" id='Services'>
+        <div className="text-center pb-10">
+
           <h2 className="text-theme text-3xl md:text-4xl font-semibold">
             Our Services
           </h2>
@@ -232,12 +235,13 @@ const Home = () => {
         <div className=" w-11/12 md:5/6 lg:5/6 2xl:w-4/6    mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-12 p-4 gap-7">
             {plans.map((plan, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-lg shadow-2xl p-6 col-span-6"
-              >
+
+              <div key={index} className="bg-white rounded-lg shadow-2xl p-6 col-span-6 flex flex-col justify-between">
+             <div>
+
                 <h2 className="text-xl font-bold mb-4">{plan.title}</h2>
                 <hr className="border-t-2 border-green-400 my-4" />
+             </div>
                 <ul className="mb-6 space-y-2">
                   {plan.features.map((feature, idx) => (
                     <li key={idx} className="flex items-start">
@@ -257,9 +261,14 @@ const Home = () => {
                     </li>
                   ))}
                 </ul>
-                <button className="md:px-[100px] px-[50px] bg-theme text-white  py-3 border border-theme rounded-full  hover:bg-transparent hover:text-theme duration-200">
+
+                <div className="w-[100%] md:w-[70%]">
+
+                <button className="md:px-[100px]  px-[50px] bg-theme text-white  py-3 border border-theme rounded-full  hover:bg-transparent hover:text-theme duration-200"  >
+
                   {plan.buttonText} &rarr;
                 </button>
+                </div>
               </div>
             ))}
           </div>
@@ -268,7 +277,7 @@ const Home = () => {
 
       {/* Blogs */}
 
-      <div className="text-center py-10 bg-gray-100 ">
+      <div className="text-center py-10 bg-gray-100 " id='Blogs'>
         <h2 className="text-theme text-3xl md:text-4xl font-semibold">
           Latest Article
         </h2>
@@ -482,42 +491,4 @@ const Home = () => {
 
 export default Home;
 
-// <div className="">
-// <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 ">
-//   <div className="flex flex-col gap-y-7 pb-5 bg-bghero bg-no-repeat">
-//     <h2 className="text-themeDarkBlue text-3xl md:text-4xl lg:text-5xl font-semibold">
-//       Welcome to the <span className="text-theme">International</span>{" "}
-//       IQ test.{" "}
-//     </h2>
-//     <p className="lg:text-xl font-normal text-ptheme ">
-//       We will evaluate, through 40 questions, your ability to learn, to
-//       understand, to form concepts, to process information, and to apply
-//       logic and reason. Your results at the end of this test will inform
-//       you of your IQ as well as your position in comparison to the
-//       population using several statistics.
-//     </p>
 
-//     <div>
-//       <Link
-//         to="/takeTest"
-//         className="px-[100px] bg-theme text-white  py-3 border border-theme rounded-full  hover:bg-transparent hover:text-theme duration-200"
-//       >
-//         Start the test
-//       </Link>
-//     </div>
-//     <div className="flex justify-center text-center">
-//       <img src="/Ellipse158.svg" alt="" srcset="" />
-//     </div>
-//   </div>
-
-//   <div className=" hidden md:block">
-//     <div className="mt-5">
-//       <img
-//         src="/91685272.svg"
-//         alt="hero-one"
-//         className="w-[500px] mx-auto"
-//       />
-//     </div>
-//   </div>
-// </div>
-// </div>

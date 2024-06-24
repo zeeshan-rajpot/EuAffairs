@@ -37,7 +37,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className=" border-gray-200 dark:bg-gray-900">
+      <nav className="  bg-transparent">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
 
           <img
@@ -88,7 +88,7 @@ const Navbar = () => {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="#Whoarewe"
                   className="block py-2 px-3 text-white rounded  md:hover:bg-transparent md:border-0 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                 >
                   Who are we
@@ -96,7 +96,7 @@ const Navbar = () => {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="#Services"
                   className="block py-2 px-3 text-white rounded md:hover:bg-transparent md:border-0  md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                 >
                   Services
@@ -104,7 +104,7 @@ const Navbar = () => {
               </li>
               <li>
                 <a
-                  href="#"
+                  href="#Blogs"
                   className="block py-2 px-3 text-white rounded  md:hover:bg-transparent md:border-0  md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                 >
                   Latest News
@@ -120,6 +120,7 @@ const Navbar = () => {
                 </a>
               </li>
               <li>
+
                 <button
                   onClick={toggleModal}
                   className="px-[20px] text-theme  py-1 border border-secColor rounded-full bg-secColor  duration-200 "
