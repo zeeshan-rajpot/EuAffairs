@@ -138,10 +138,10 @@ const Home = () => {
       {/* End Hero Section */}
 
       <div
-        className=" bg-none md:bg-bgEllipse2 bg-no-repeat  bg-right-bottom"
+        className=" bg-none md:bg-bgEllipse2 bg-no-repeat  bg-right-bottom "
         id="Whoarewe"
       >
-        <div className="bg-none md:bg-bgellipse  bg-no-repeat  bg-left-bottom">
+        <div className="bg-none md:bg-bgellipse  bg-no-repeat  bg-left-bottom md:py-16 py-0">
           <div className=" w-11/12 2xl:w-4/6  py-10  mx-auto ">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 ">
               <div className="hidden md:block">
