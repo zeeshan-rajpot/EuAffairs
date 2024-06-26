@@ -96,6 +96,11 @@ const Users = () => {
     },
   ];
 
+
+
+
+
+
   const renderTableRows = () => {
     return userData.map((user, index) => (
       <tr key={user.id} className={`${index % 2 === 1 ? "bg-[#FCFCFC]" : ""}`}>
