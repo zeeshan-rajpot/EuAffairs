@@ -73,19 +73,23 @@ const Login = ({ toggle }) => {
                   Forget Password
                 </p>
               </div>
+              <div className="mt-20">
+
               <Link
                 to="/CustmerProfile"
                 type="submit"
-                className="w-[75%] m-auto my-5 mt-10 text-theme bg-secColor font-medium rounded-3xl text-lg px-5 py-2.5 text-center  hover:bg-transparent hover:text-login duration-200 border border-secColor"
+                className=" px-32   text-theme bg-secColor font-medium rounded-3xl text-lg  py-2.5 text-center  hover:bg-transparent hover:text-login duration-200 border border-secColor"
               >
                 Login
               </Link>
+              </div>
+<br />
 
               <Link to="/overview">
                 <button
 //                   onClick={handleAdmin}
                   type="submit"
-                  className="w-[75%] m-auto my-5 mt-10 text-theme bg-secColor font-medium rounded-3xl  px-5 py-2.5 text-center  hover:bg-transparent hover:text-login duration-200 border border-secColor text-lg"
+                  className="  my-5  text-theme bg-secColor font-medium rounded-3xl  px-32 py-2.5 text-center  hover:bg-transparent hover:text-login duration-200 border border-secColor text-lg"
                 >
                   Admin
                 </button>

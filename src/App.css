@@ -16,3 +16,33 @@ body{
   content: '•';
   @apply text-black inline-block w-4 -ml-4;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+/* Custom styles for radio buttons */
+.custom-radio {
+  appearance: none;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid #00FFB2;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  outline: none;
+  cursor: pointer;
+}
+
+.custom-radio:checked::before {
+  content: '';
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: #00FFB2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

@@ -59,8 +59,8 @@ const Home = () => {
       title: "Basic",
       features: [
         "Email alerts",
-        "AI driven monitoring reports to your interests.",
-        "News Flashes from current event.",
+        "AI driven monitoring reports to your interests",
+        "News Flashes from current event",
       ],
       buttonText: "Get Started",
     },
@@ -68,8 +68,8 @@ const Home = () => {
       title: "Professional",
       features: [
         "Email alerts",
-        "AI driven monitoring reports to your interests.",
-        "News Flashes from current event.",
+        "AI driven monitoring reports to your interests",
+        "News Flashes from current event",
         "Personalized reports for your needs",
       ],
       buttonText: "Get Started",
@@ -160,15 +160,7 @@ const Home = () => {
                 </h2>
 
                 <p className="lg:text-xl font-normal text-ptheme text-md text-justify md:text-left">
-                  EUaffairs offers a subscription-based service to help
-                  businesses and individuals stay informed and compliant with
-                  the ever-evolving EU policy landscape. We focus on Healthcare,
-                  Sustainability, Economy, and Politics. Through our
-                  user-friendly website, we deliver timely, relevant, and
-                  comprehensive reports tailored to your needs. Our mission is
-                  to empower users with the insights necessary to make informed
-                  decisions and effectively navigate the complex EU regulatory
-                  environment.
+                EUaffairs offers a subscription-based service designed to help businesses and individuals stay informed and compliant with the constantly evolving EU policy landscape. We focus on Healthcare, Sustainability, Economy, and Politics. Through our user-friendly website, we provide timely, relevant, and comprehensive reports tailored to your needs. Our mission is to empower our users with the insights necessary to make informed decisions and navigate the complex EU regulatory environment effectively.
                 </p>
 
                 <div></div>
@@ -214,9 +206,9 @@ const Home = () => {
                   {category.items.map((item, idx) => (
                     <li key={idx} className="mb-2">
                       <Link
-                        to={`/CategoriesDetail/${encodeURIComponent(
-                          category.title
-                        )}/${encodeURIComponent(item.text)}`}
+                        // to={`/CategoriesDetail/${encodeURIComponent(
+                        //   category.title
+                        // )}/${encodeURIComponent(item.text)}`}
                         className="text-ptheme hover:underline"
                         rel="noopener noreferrer"
                       >
@@ -249,7 +241,7 @@ const Home = () => {
                 key={index}
                 className="bg-white rounded-lg shadow-2xl p-6 col-span-6 flex flex-col justify-between"
               >
-                <div>
+                <div className="text-center">
                   <h2 className="text-xl font-bold mb-4">{plan.title}</h2>
                   <hr className="border-t-2 border-green-400 my-4" />
                 </div>
@@ -273,11 +265,11 @@ const Home = () => {
                   ))}
                 </ul>
 
-                <div className="w-[100%] md:w-[70%]">
+                {/* <div className="w-[100%] md:w-[70%]">
                   <button className="md:px-[100px]  px-[50px] bg-theme text-white  py-3 border border-theme rounded-full  hover:bg-transparent hover:text-theme duration-200">
                     {plan.buttonText} &rarr;
                   </button>
-                </div>
+                </div> */}
               </div>
             ))}
           </div>
@@ -335,7 +327,7 @@ const Home = () => {
         <h2 className="text-theme text-3xl md:text-4xl font-semibold">
           Contact Us
         </h2>
-        <p className="lg:text-xl font-normal text-secColor ">Blog Posts</p>
+        {/* <p className="lg:text-xl font-normal text-secColor ">Blog Posts</p> */}
       </div>
 
       <div className="  w-11/12 md:5/6 lg:5/6 2xl:w-4/6    mx-auto">
