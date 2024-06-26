@@ -164,7 +164,7 @@ const CustmerProfile = () => {
           <div className="bg-white p-8 shadow-lg relative w-full md:w-1/2 xl:w-2/6 rounded-3xl">
             <button
               className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 p-2"
-              onClick={handleCloseModal}
+              onClick={handleCloseEditModal}
             >
               <img src="/cancle.png" alt="Close" />
             </button>
@@ -287,12 +287,12 @@ const CustmerProfile = () => {
                   </div>
 
                   <div className='mt-5'>
-                    <button onClick={handleCloseModal} className="bg-gray-300 text-gray-700 px-16 py-2 rounded-full">Cancel</button>
+                    <button onClick={handleCloseEditModal} className="bg-gray-300 text-gray-700 px-16 py-2 rounded-full">Cancel</button>
 
 
                   </div>
                   <div className='mt-5'>
-                    <button onClick={handleCloseModal}  className="bg-green-500 text-white px-16 py-2 rounded-full">Save</button>
+                    <button onClick={handleCloseEditModal}  className="bg-green-500 text-white px-16 py-2 rounded-full">Save</button>
 
                   </div>
 
