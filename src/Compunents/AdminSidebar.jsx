@@ -194,6 +194,26 @@ const AdminSidebar = () => {
                 />
                 <span className="ms-3 text-lg font-normal">Request</span>
               </NavLink>
+            </li>  
+             <li>
+              <NavLink
+                to="/Messages"
+                className={({ isActive }) =>
+                  clsx(
+                    "flex items-center py-1 rounded-2xl text-gray-400 hover:text-theme ",
+                    {
+                      "text-theme ": isActive,
+                    }
+                  )
+                }
+              >
+                <img
+                  src="/request.png"
+                  alt="newsFlash_icon"
+                  className="w-8 ms-4"
+                />
+                <span className="ms-3 text-lg font-normal">Messages</span>
+              </NavLink>
             </li>
             <li>
               <NavLink

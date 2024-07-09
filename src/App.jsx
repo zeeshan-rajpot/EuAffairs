@@ -10,12 +10,8 @@ import News from "./Pages/Custmer/News/News";
 import RequestList from "./Pages/Custmer/Request/Request";
 import Saved from "./Pages/Custmer/Saved/Saved";
 import Tilored from "./Pages/Custmer/Tilored/Tilored";
-import Overview from "./Pages/Admin/Overview/Overview";
-import Users from "./Pages/Admin/Users/Users";
-import Reoprt from "./Pages/Admin/Report/Reoprt";
-import Article from "./Pages/Article/Article";
-import NewsFlash from "./Pages/Admin/NewsFlash/NewsFlash";
-import AdminRequest from "./Pages/Admin/AdminRequest/AdminRequest";
+
+import Payment from "./Pages/Payment/Payment";
 
 function App() {
   const router = createBrowserRouter([
@@ -51,28 +47,10 @@ function App() {
       path: "/Tilored",
       element: <Tilored />,
     },
+   
     {
-      path: "/overview",
-      element: <Overview />,
-    },
-    {
-      path: "/users",
-      element: <Users />,
-    },
-    {
-      path: "/report",
-      element: <Reoprt />,
-    },
-    {
-      path: "/article",
-      element: <Article />,
-    },
-    {
-      path: "/newsFlash",
-      element: <NewsFlash />,
-    }, {
-      path: "/AdminRequest",
-      element: <AdminRequest />,
+      path: "/Payment",
+      element: <Payment />,
     },
   ]);
 

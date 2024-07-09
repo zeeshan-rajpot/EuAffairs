@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const SignUp = ({toggle}) => {
 
@@ -72,13 +73,13 @@ const SignUp = ({toggle}) => {
                             </div>
 
     
-                            <button
-                                // onClick={handleLogin}
+                            <Link
+                              to='/Payment'
                                 type="submit"
                                 className="w-[75%] m-auto my-5 mt-10 text-theme bg-secColor font-medium rounded-3xl text-lg px-5 py-2.5 text-center  hover:bg-transparent hover:text-login duration-200 border border-secColor"
                             >
                                Sign Up
-                            </button>
+                            </Link>
 
                     
                         </div>
