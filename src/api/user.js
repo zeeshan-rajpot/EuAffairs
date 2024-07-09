@@ -51,6 +51,14 @@ const uploadRequest = async (uploadData) => {
       console.error("Error fetching user:", error);
       throw error;
     }
+  }; const getNews = async () => {
+    try {
+      const response = await apiClient.get(`user/news`);
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching user:", error);
+      throw error;
+    }
   };
 
 export default {
@@ -59,5 +67,6 @@ export default {
     getRequest,
     getArticle,
     getReport,
+    getNews,
 
 };

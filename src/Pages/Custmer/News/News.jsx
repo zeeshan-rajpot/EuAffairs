@@ -1,10 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import Sidebar from '../../../Compunents/SideBar';
 import NewsCard from './NewsCard';
+import { userApi } from '../../../api';
 
 const News = () => {
 
+  const [news, setNews] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const getNews = async () => {
+    try {
+      const response = await userApi.getNews();
+      console.log("User data:", response.news);
+      setNews(response?.news || []);
+    } catch (err) {
+      setError(err.message);
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
+    getNews();
+  }, []);
     const data = [
         {
           image: 'https://via.placeholder.com/300', // Replace with actual image URL
@@ -50,7 +69,7 @@ const News = () => {
    
         <div className="container mx-auto p-4">
       <div className="flex flex-col space-y-4">
-        {data.map((card, index) => (
+        {news.map((card, index) => (
           <NewsCard key={index} {...card} />
         ))}
       </div>
