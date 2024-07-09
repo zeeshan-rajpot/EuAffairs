@@ -1,7 +1,47 @@
-import React from 'react'
+import React ,{useState} from 'react'
+import { userApi } from '../../../api';
+import toast, { Toaster } from 'react-hot-toast';
 
-const RequestModal = ({ toggle }) => {
+const RequestModal = ({ toggle ,req  }) => {
+
+    const [subject, setSubject] = useState('');
+    const [description, setDescription] = useState('');
+    const [loading, setLoading] = useState(true); // Set loading to true initially
+    const [error, setError] = useState(null);
+
+    const handleUpload = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        setError(null);
+      
+        const uploadData = {
+        subject ,
+         description
+        };
+      
+        // console.log("Data being uploaded:", uploadData);
+      
+        try {
+          const upload = await userApi.uploadRequest(uploadData);
+        //   console.log(upload);
+          toast.success(upload.message);
+          req()
+        } catch (err) {
+          const errorMessage = err.response?.data?.message || "An error occurred.";
+          setError(errorMessage);
+          console.log(err);
+          toast.error(errorMessage);
+        } finally {
+          setLoading(false);
+        }
+      };
+
     return (
+
+        <>
+        <Toaster />
+        
+       
         <div
             id="default-modal"
             aria-hidden="true"
@@ -33,21 +73,30 @@ const RequestModal = ({ toggle }) => {
 
                         {/* <img src="/Frame 33.png" className="w-6" /> */}
                         <input
+                        value={subject}
+                        onChange={(e) => setSubject(e.target.value)}
                             type="text"
-
                             name='text'
                             placeholder="Request subject"
                             className="bg-[#fafafa] " />
                     </div>
                     <div className="input-container shadow  mt-3 rounded-3xl  bg-[#fafafa]">
-                        <textarea name="" id="" cols="130 " placeholder='Request details ' rows='10' className='w-100 bg-[#fafafa]'> </textarea>
+                        <textarea
+                         value={description}
+                         onChange={(e) => setDescription(e.target.value)}
+                         name="" 
+                         id=""
+                         cols="130 "
+                         placeholder='Request details '
+                         rows='10' 
+                         className='w-100 bg-[#fafafa]'> </textarea>
 
 
                     </div>
 
 
                     <button
-
+                       onClick={handleUpload}
                         type="submit"
                         className="w-[75%] m-auto my-5 mt-10 text-theme bg-secColor font-medium rounded-3xl text-lg px-5 py-2.5 text-center  hover:bg-transparent hover:text-login duration-200 border border-secColor"
                     >
@@ -66,6 +115,7 @@ const RequestModal = ({ toggle }) => {
 
             </div>
         </div>
+        </>
     )
 }
 

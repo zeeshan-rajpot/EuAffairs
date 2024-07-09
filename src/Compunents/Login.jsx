@@ -1,28 +1,52 @@
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { userApi } from '../api';
+import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from 'react-hot-toast';
 import "./Login.css";
 
-import React, { useState } from "react";
 
 const Login = ({ toggle }) => {
-  const [showNext, setShowNext] = useState(false);
-  const [showConfirm, setShowConfirm] = useState(false);
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const credentials = { email, password };
+   
+  console.log(credentials)
 
-  const handleLogin = () => {
-    setShowNext(true);
+  
+  const handleLogin = async (e) => {
+      e.preventDefault();
+      setLoading(true);
+      setError(null);
+
+      try {
+     
+          const userData = await userApi.login(credentials);
+          // console.log('User data:', userData);
+          navigate("/CustmerProfile");
+          localStorage.setItem("Token", userData.token);
+      } catch (err) {
+          setError(err.message);
+          console.log( err.response.data.message);
+          toast.error( err.response.data.message);
+    
+          
+      } finally {
+          setLoading(false);
+      }
   };
 
-  const handleAdmin = () => {
-    setShowNext(true);
-  };
 
-  const handleConfirm = () => {
-    setShowConfirm(true);
-  };
+
 
   return (
     <>
-      {/* <Toaster /> */}
-      <div
+  <Toaster />
+
+         <div
         id="default-modal"
         aria-hidden="true"
         className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
@@ -31,7 +55,7 @@ const Login = ({ toggle }) => {
           <div className="flex justify-between items-center p-4 ">
             <h3></h3>
             <button
-              onClick={toggle}
+            //   onClick={toggle}
               className="text-gray-400 hover:text-gray-600"
             >
               <span className="sr-only">Close modal</span>
@@ -45,127 +69,48 @@ const Login = ({ toggle }) => {
             </button>
           </div>
 
-          {!showNext && !showConfirm ? (
-            <div className="p-6 pt-1 space-y-4 text-center">
-              <h3 className="text-xl md:text-3xl font-semibold">EU AFFAIRS</h3>
-              <p className="text-lg text-gray-500 font-semibold">Login</p>
-              <div className="input-container shadow  mt-3 rounded-3xl  bg-[#fafafa]">
-                <img src="/Frame 33.png" className="w-6" />
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  className="bg-[#fafafa] "
-                />
-              </div>
-              <div className="input-container shadow  mt-3 rounded-3xl  bg-[#fafafa]">
-                <img src="/Frame 34.png" className="w-6" />
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                  className="bg-[#fafafa] "
-                />
-              </div>
-
-              <div className="text-end">
-                <p className="text-sm text-gray-500 font-semibold">
-                  Forget Password
-                </p>
-              </div>
-              <div className="mt-20">
-
-              <Link
-                to="/CustmerProfile"
-                type="submit"
-                className=" px-32   text-theme bg-secColor font-medium rounded-3xl text-lg  py-2.5 text-center  hover:bg-transparent hover:text-login duration-200 border border-secColor"
-              >
-                Login
-              </Link>
-              </div>
-<br />
-
-              <Link to="/overview">
-                <button
-//                   onClick={handleAdmin}
-                  type="submit"
-                  className="  my-5  text-theme bg-secColor font-medium rounded-3xl  px-32 py-2.5 text-center  hover:bg-transparent hover:text-login duration-200 border border-secColor text-lg"
-                >
-                  Admin
-                </button>
-              </Link>
-
-
-
-
-
-
+          <div className="p-6 pt-1 space-y-4 text-center">
+            <h3 className="text-xl md:text-3xl font-semibold">EU AFFAIRS</h3>
+            <p className="text-lg text-gray-500 font-semibold">Admin Login</p>
+            <div className="input-container shadow mt-3 rounded-3xl bg-[#fafafa] flex items-center p-2"
+             
+             >
+              <img src="/Frame 33.png" className="w-6" alt="Email Icon" />
+              <input
+                   type="email"
+                   value={email}
+                   onChange={(e) => setEmail(e.target.value)}
+                   name='email' 
+                   placeholder="Email" 
+                className="bg-[#fafafa] flex-1 p-2 outline-none"
+              />
             </div>
-          ) : showNext && !showConfirm ? (
-            <>
-              <div className="p-6 pt-1 space-y-4 text-center">
-                <h3 className="text-xl md:text-2xl font-semibold">
-                  Enter the code
-                </h3>
-                <p className="text-sm text-gray-500">
-                  We have just sent you a 4-digit code to
-                </p>
-                <div className="input-container shadow  mt-3 rounded-3xl  bg-[#fafafa]">
-                  <img src="/Frame 33.png" className="w-6" />
-                  <input
-                    type="number"
-                    name="email"
-                    placeholder="OTP"
-                    className="bg-[#fafafa] "
-                  />
-                </div>
-                <button
-                  onClick={handleConfirm}
-                  type="submit"
-                  className="w-[75%] m-auto my-5 mt-10 text-white bg-login font-medium rounded-3xl text-sm px-5 py-2.5 text-center  hover:bg-transparent hover:text-login duration-200 border border-login"
+            <div className="input-container shadow mt-3 rounded-3xl bg-[#fafafa] flex items-center p-2">
+              <img src="/Frame 34.png" className="w-6" alt="Password Icon" />
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                 placeholder="Password" 
+                className="bg-[#fafafa] flex-1 p-2 outline-none"
+              />
+            </div>
+
+            <div className="mt-20">
+              <button
+                // to="/overview"
+                onClick={handleLogin}
+                type="submit"
+                className="px-32 text-theme bg-secColor font-medium rounded-3xl text-lg py-2.5 text-center hover:bg-transparent hover:text-login duration-200 border border-secColor"
+                disabled={loading}
                 >
-                  Next
-                </button>
-              </div>
-            </>
-          ) : (
-            <>
-              <div className="p-6 pt-1 space-y-4 text-center">
-                <h3 className="text-xl md:text-2xl font-semibold">
-                  Create a new password
-                </h3>
-                <p className="text-sm text-gray-500">
-                  Your new password must be different from previous used
-                  passwords.
-                </p>
-                <div className="input-container shadow  mt-3 rounded-3xl  bg-[#fafafa]">
-                  <img src="/Frame 33.png" className="w-6" />
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    className="bg-[#fafafa] "
-                  />
-                </div>
-                <div className="input-container shadow  mt-3 rounded-3xl  bg-[#fafafa]">
-                  <img src="/Frame 33.png" className="w-6" />
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    className="bg-[#fafafa] "
-                  />
-                </div>
-                <button
-                  onClick={handleNext}
-                  type="submit"
-                  className="w-[75%] m-auto my-5 mt-10 text-white bg-login font-medium rounded-3xl text-sm px-5 py-2.5 text-center  hover:bg-transparent hover:text-login duration-200 border border-login"
-                >
-                  Next
-                </button>
-              </div>
-            </>
-          )}
+              {loading ? 'Login...' : 'Login'}
+              </button>
+            </div>
+            <br />
+        
+          </div>
         </div>
       </div>
     </>

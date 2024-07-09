@@ -1,5 +1,6 @@
 
-import React from 'react';
+import React, { useEffect, useState } from "react";
+import { userApi } from "../../api";
 import SavedReportsCard from './SavedReportsCard';
 
 
@@ -8,6 +9,25 @@ import SavedReportsCard from './SavedReportsCard';
    
 
 const SavedReports = () => {
+  const [report, setReport] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const getReport = async () => {
+    try {
+      const response = await userApi.getReport();
+      console.log("User data:", response.reports);
+      setReport(response?.reports || []);
+    } catch (err) {
+      setError(err.message);
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getReport();
+  }, []);
 
 
     const data = [
@@ -32,7 +52,7 @@ const SavedReports = () => {
   return (
     <div className="container mx-auto p-4">
     <div className="flex flex-col space-y-4">
-      {data.map((card, index) => (
+      {report.map((card, index) => (
         <SavedReportsCard key={index} {...card} />
       ))}
     </div>

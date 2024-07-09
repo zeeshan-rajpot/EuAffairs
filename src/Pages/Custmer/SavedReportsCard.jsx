@@ -1,16 +1,42 @@
-const SavedReportsCard = ({ title, date, readTime, category, description }) => {
-    return (
-      <div className="bg-white rounded-3xl shadow-md overflow-hidden mb-6 p-6">
-        <div className="flex items-center justify-between text-sm text-gray-500 mb-2">
-          <span>{date}</span>
-          <span className="ml-4 text-secColor">{category}</span>
-          <span className="ml-auto">{readTime}</span>
-        </div>
-        <h3 className="text-xl font-semibold mb-2 text-theme" >{title}</h3>
-        <p className="text-gray-600 mb-4">{description}</p>
-        <a href="#" className="text-green-500 font-semibold">Read More</a>
-      </div>
-    );
+import React from 'react';
+import { format } from 'date-fns';
+
+const SavedReportsCard = ({ heading, createdAt, updatedAt, category, reportDescription, loading }) => {
+  const formatDate = (isoString) => {
+    return format(new Date(isoString), 'MMMM-dd');
   };
-  
-  export default SavedReportsCard;
+
+  return (
+    <div className={`bg-white rounded-3xl shadow-md overflow-hidden mb-6 p-6 ${loading ? 'shimmer' : ''}`}>
+      <div className="flex items-center justify-between text-sm text-gray-500 mb-2">
+        {loading ? (
+          <div className="h-4 bg-gray-300 rounded w-24 shimmer"></div>
+        ) : (
+          <span>{formatDate(createdAt)}</span>
+        )}
+        {loading ? (
+          <div className="h-4 bg-gray-300 rounded w-20 shimmer"></div>
+        ) : (
+          <span className="ml-4 text-secColor">{category}</span>
+        )}
+        {/* <span className="ml-auto">{updatedAt}</span> */}
+      </div>
+      {loading ? (
+        <div className="h-6 bg-gray-300 rounded w-48 mb-2 shimmer"></div>
+      ) : (
+        <h3 className="text-xl font-semibold mb-2 text-theme">{heading}</h3>
+      )}
+      {loading ? (
+        <div className="space-y-2">
+          <div className="h-4 bg-gray-300 rounded w-full shimmer"></div>
+          <div className="h-4 bg-gray-300 rounded w-5/6 shimmer"></div>
+        </div>
+      ) : (
+        <p className="text-gray-600 mb-4">{reportDescription}</p>
+      )}
+      {!loading && <a href="#" className="text-green-500 font-semibold">Read More</a>}
+    </div>
+  );
+};
+
+export default SavedReportsCard;

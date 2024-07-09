@@ -1,10 +1,38 @@
-import React, { useState } from 'react';
+
+import React, { useEffect, useState } from "react";
 import SavedReportsCard from './SavedReportsCard';
 
 
+import { userApi } from '../../api';
 
 
 const TailoredReport = () => {
+
+
+  const [report, setReport] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+
+  const getReport = async () => {
+    try {
+      const response = await userApi.getReport();
+      console.log("User data:", response.reports);
+      setReport(response?.reports || []);
+    } catch (err) {
+      setError(err.message);
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getReport();
+  }, []);
+
+
+  
     const data = [
         {
           title: 'How to Beat the Heat: See It Coming (More than a Week Ahead!)',
@@ -31,10 +59,7 @@ const TailoredReport = () => {
       };
     return (
 
-        <>
-        
-        
-        <div className="container mx-auto p-4">
+      <div className="container mx-auto p-4">
       {!isUpgraded ? (
         <div className='text-center mt-20'>
           <h3 className='text-3xl font-semibold text-theme'>
@@ -52,14 +77,20 @@ const TailoredReport = () => {
         </div>
       ) : (
         <div className="flex flex-col space-y-4 mt-8">
-          {data.map((card, index) => (
-            <SavedReportsCard key={index} {...card} />
-          ))}
+          {loading ? (
+            Array.from({ length: 4 }).map((_, index) => (
+              <SavedReportsCard key={index} loading={true} />
+            ))
+          ) : (
+            report.map((card, index) => (
+              <SavedReportsCard key={index} {...card} />
+            ))
+          )}
         </div>
       )}
     </div>
-        </>
-    );
-}
+  );
+};
+
 
 export default TailoredReport;
