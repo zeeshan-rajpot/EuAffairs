@@ -55,7 +55,7 @@ const Login = ({ toggle }) => {
           <div className="flex justify-between items-center p-4 ">
             <h3></h3>
             <button
-            //   onClick={toggle}
+              onClick={toggle}
               className="text-gray-400 hover:text-gray-600"
             >
               <span className="sr-only">Close modal</span>

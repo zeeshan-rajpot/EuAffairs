@@ -3,12 +3,14 @@ import React, { useEffect, useState } from "react";
 import { userApi } from "../../api";
 import SavedReportsCard from './SavedReportsCard';
 
+import toast, { Toaster } from 'react-hot-toast';
 
 
   
    
 
 const SavedReports = () => {
+
   const [report, setReport] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -16,7 +18,11 @@ const SavedReports = () => {
     try {
       const response = await userApi.getReport();
       console.log("User data:", response.reports);
-      setReport(response?.reports || []);
+      const reports = response?.reports || [];
+      setReport(reports);
+      if (reports.length === 0) {
+        toast.error("There is no report");
+      }
     } catch (err) {
       setError(err.message);
       console.log(err);
@@ -24,6 +30,7 @@ const SavedReports = () => {
       setLoading(false);
     }
   };
+
 
   useEffect(() => {
     getReport();
@@ -50,6 +57,11 @@ const SavedReports = () => {
 
 
   return (
+
+    <>
+    
+<Toaster />
+    
     <div className="container mx-auto p-4">
     <div className="flex flex-col space-y-4">
       {report.map((card, index) => (
@@ -57,6 +69,7 @@ const SavedReports = () => {
       ))}
     </div>
   </div>
+      </>
   );
 }
 

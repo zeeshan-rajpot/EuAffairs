@@ -13,7 +13,7 @@ const Yourneeds = () => {
   const getarticles = async () => {
     try {
       const response = await userApi.getArticle();
-      console.log("User data:", response.articles);
+      console.log("User data:", response);
       setArticles(response?.articles || []);
     } catch (err) {
       setError(err.message);

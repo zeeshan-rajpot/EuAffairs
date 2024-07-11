@@ -6,6 +6,7 @@ const NewsCard = ({ thumbnail, createdAt, readTime, category, heading, reportDes
     return format(new Date(isoString), 'MMMM-dd');
   };
 
+
     return (
       <div className="bg-white rounded-3xl shadow-md overflow-hidden mb-6 p-6">
         <div className="flex items-center space-x-4">
