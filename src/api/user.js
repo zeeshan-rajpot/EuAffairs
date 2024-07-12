@@ -98,6 +98,52 @@ const addIntrest = async (uploadData) => {
     }
   };
 
+  const getSavedArticle = async () => {
+    try {
+      const response = await apiClient.get(`user/saved-articles`);
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching user:", error);
+      throw error;
+    }
+  };
+
+
+
+
+
+  const savearticle = async (id) => {
+    try {
+      const response = await apiClient.post(`user/save-article/${id}`);
+      return response.data;
+    } catch (error) {
+      console.error("Error saving article:", error);
+      throw error;
+    }
+  };
+  const savereport = async (id) => {
+    try {
+      const response = await apiClient.post(`user/save-report/${id}`);
+      return response.data;
+    } catch (error) {
+      console.error("Error saving article:", error);
+      throw error;
+    }
+  };
+
+  const uploadProfile = async (formData) => {
+    try {
+      const response = await apiClient.post(`user/upload-profile-picture`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  };
+
 export default {
     login,
     uploadRequest,
@@ -109,4 +155,8 @@ export default {
     getProfile,
     getInterests,
     signup,
+    getSavedArticle,
+    savearticle,
+    savereport,
+    uploadProfile,
 };

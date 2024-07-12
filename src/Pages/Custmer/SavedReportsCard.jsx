@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import { format } from 'date-fns';
 
-const SavedReportsCard = ({ heading, createdAt, updatedAt, category, reportDescription, loading }) => {
+const SavedReportsCard = ({ heading, createdAt, updatedAt, category, reportDescription, loading ,_id}) => {
   const formatDate = (isoString) => {
     return format(new Date(isoString), 'MMMM-dd');
   };
@@ -34,7 +35,14 @@ const SavedReportsCard = ({ heading, createdAt, updatedAt, category, reportDescr
       ) : (
         <p className="text-gray-600 mb-4">{reportDescription}</p>
       )}
-      {!loading && <a href="#" className="text-green-500 font-semibold">Read More</a>}
+      {!loading && 
+       <Link
+       to={`/ReportsDetail/${encodeURIComponent(heading)}/${encodeURIComponent(createdAt)}/${encodeURIComponent(category)}/${encodeURIComponent(reportDescription)}/${encodeURIComponent(_id)}`}
+      className="text-green-500 font-semibold"
+    >
+      Read More 
+      </Link>
+      }
     </div>
   );
 };

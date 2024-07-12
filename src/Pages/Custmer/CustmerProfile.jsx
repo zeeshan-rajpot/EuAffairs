@@ -4,6 +4,8 @@ import TabContent from "./TabContent";
 import { userApi } from "../../api";
 import CheckboxSection from "./CheckboxSection"; // Adjust the import path accordingly
 import toast, { Toaster } from 'react-hot-toast';
+
+
 const CustmerProfile = () => {
   const [activeTab, setActiveTab] = useState("first");
   const [username, setUsername] = useState('');
@@ -28,16 +30,44 @@ const CustmerProfile = () => {
 
   const getProfile = async () => {
     try {
+      setLoading(true);
       const response = await userApi.getProfile();
       console.log("User data:", response?.user);
-      setUsername(response?.user?.email || []);
+      setUsername(response?.user?.email || '');
+      setCategoriesState(response?.user?.interests || []);
+      
+      // Check if there is a profile picture in the response
+      const profileImage = response?.profilePicture
+        ? response.profilePicture
+        : 'https://via.placeholder.com/150'; // Dummy link if no profile picture is available
+      
+      // Update the profile based on the response
+      setProfiles([
+        {
+          image: profileImage,
+          name: response?.user?.email || '', // Assuming email is used as name
+          interests: response?.user?.interests || [], // Use actual interests from response
+        }
+      ]);
     } catch (err) {
-      setError(err.message);
-      console.log("user not get " + err);
+      setError("User get error: " + err.message);
+      console.log("User not get: " + err.response?.data?.message);
+      if (err.response?.data?.message === "User has no interests, please add it first ") {
+        setIsEditModalOpen(true);
+      }
     } finally {
       setLoading(false);
     }
   };
+
+  const [profiles, setProfiles] = useState([
+    {
+      image: 'https://via.placeholder.com/150', // Default profile picture link
+      name: username,
+      interests: categoriesState,
+    },
+  ]);
+
 
   const getInterest = async () => {
     try {
@@ -57,31 +87,13 @@ const CustmerProfile = () => {
     getInterest();
   }, []);
 
-  const profiles = [
-    {
-      image: 'https://via.placeholder.com/150',
-      name: username,
-      // interests: [
-      //   {
-      //     category: 'Healthcare',
-      //     items: ['Animal health', 'Pharmaceuticals', 'Public health'],
-      //   },
-      //   {
-      //     category: 'Sustainability',
-      //     items: ['Renewable energy', 'Climate change', 'Sustainable agriculture'],
-      //   },
-      //   {
-      //     category: 'Economy',
-      //     items: ['Trade regulations', 'Fiscal policies', 'Economic growth initiatives'],
-      //   },
-      //   {
-      //     category: 'Politics',
-      //     items: ['EU legislation', 'Human rights'],
-      //   },
-      // ],
-      interests: categoriesState,
-    },
-  ];
+  // const profiles = [
+  //   {
+  //     image: 'https://via.placeholder.com/150',
+  //     name: username,
+  //     interests: categoriesState,
+  //   },
+  // ];
 
   const handleCardClick = (profile) => {
     setSelectedCard(profile);
@@ -225,9 +237,38 @@ const CustmerProfile = () => {
 
 
 
+ 
 
 
+  const handleImageChange = async (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        // setImagePreview(reader.result); // You can set a preview image if needed
+      };
+      reader.readAsDataURL(file);
 
+      setLoading(true);
+      setError(null);
+
+      const formData = new FormData();
+      formData.append('image', file);
+console.log(file)
+      try {
+        const response = await userApi.uploadProfile(formData); // Ensure uploadProfile is correctly defined/imported
+        // Assuming response.url is where the uploaded image URL is returned
+        setSelectedCard({ ...selectedCard, image: URL.createObjectURL(file) });
+        toast.success(response.message);
+      } catch (err) {
+        const errorMessage = err.response?.data?.message || "An error occurred.";
+        setError(errorMessage);
+        console.log("Upload error:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
 
   return (
     <>
@@ -284,11 +325,24 @@ const CustmerProfile = () => {
             </button>
 
             <div className="text-center">
-              <img
-                src={selectedCard.image}
-                alt="Profile"
-                className="w-24 h-24 rounded-full mx-auto"
-              />
+            <div>
+      <label htmlFor="imageUpload">
+        <img
+          src={selectedCard.image} // Display the selected image or placeholder
+          alt="Profile"
+          className="w-24 h-24 rounded-full mx-auto cursor-pointer"
+        />
+      </label>
+      <input
+        type="file"
+        id="imageUpload"
+        accept="image/*"
+        style={{ display: 'none' }}
+        onChange={handleImageChange}
+      />
+      {loading && <p>Loading...</p>}
+      {error && <p>Error: {error}</p>}
+    </div>
               <h2 className="text-xl font-semibold mt-4">{selectedCard.name}</h2>
             </div>
             <div className="mt-6">
