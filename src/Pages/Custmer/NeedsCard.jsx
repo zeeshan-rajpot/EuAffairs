@@ -1,8 +1,10 @@
 import React from "react";
 import { format } from 'date-fns';
+import { Link } from 'react-router-dom';
 
 
-const NewsCard = ({ thumbnail, createdAt, readTime, category, heading, reportDescription, loading }) => {
+
+const NewsCard = ({ thumbnail, createdAt, readTime, category, heading, reportDescription, loading ,_id}) => {
 
   const formatDate = (isoString) => {
     return format(new Date(isoString), 'MMMM-dd');
@@ -47,7 +49,11 @@ const NewsCard = ({ thumbnail, createdAt, readTime, category, heading, reportDes
         ) : (
           <p className="text-gray-600 mb-4">{reportDescription}</p>
         )}
-        {!loading && <a href="#" className="text-green-500 font-semibold">Read More</a>}
+        {!loading &&    <Link  
+        to={`/ArticleDetail/${encodeURIComponent(heading)}/${encodeURIComponent(createdAt)}/${encodeURIComponent(category)}/${encodeURIComponent(reportDescription)}/${encodeURIComponent(thumbnail)}/${encodeURIComponent(_id)}`}
+         className="text-green-500 font-semibold">Read More</Link>
+         
+         }
       </div>
     </div>
   );

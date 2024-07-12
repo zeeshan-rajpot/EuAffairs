@@ -12,6 +12,8 @@ import Saved from "./Pages/Custmer/Saved/Saved";
 import Tilored from "./Pages/Custmer/Tilored/Tilored";
 
 import Payment from "./Pages/Payment/Payment";
+import ReportsDetail from "./Pages/Custmer/ReportsDetail/ReportsDetail";
+import ArticleDetail from "./Pages/Custmer/ArticleDetail/ArticleDetail";
 
 function App() {
   const router = createBrowserRouter([
@@ -51,7 +53,16 @@ function App() {
     {
       path: "/Payment",
       element: <Payment />,
+    }, 
+      {
+        path:"/ReportsDetail/:heading/:createdAt/:category/:reportDescription/:id",
+      element: <ReportsDetail />,
     },
+    {
+      path:"/ArticleDetail/:heading/:createdAt/:category/:reportDescription/:image/:id",
+     element: <ArticleDetail />,
+   },
+ 
   ]);
 
   return <RouterProvider router={router} />;
