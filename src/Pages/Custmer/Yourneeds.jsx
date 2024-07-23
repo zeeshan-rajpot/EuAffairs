@@ -1,5 +1,6 @@
 
-import React, { useEffect, useState } from "react";
+import React, {createContext, useContext, useEffect, useState } from "react";
+
 import NeedsCard from './NeedsCard';
 import { userApi } from '../../api';
 
@@ -14,7 +15,7 @@ const Yourneeds = () => {
     try {
       const response = await userApi.getArticle();
       console.log("User data:", response);
-      setArticles(response?.articles || []);
+      setArticles(response?.articles.reverse() || []);
     } catch (err) {
       setError(err.message);
       console.log(err);

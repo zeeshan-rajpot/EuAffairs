@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import Navbar from "../../Compunents/Navbar";
 import { Link } from "react-router-dom";
 import Footer from "../../Compunents/Footer";
+import { userApi } from "../../api";
+import toast, { Toaster } from 'react-hot-toast';
+import SignUp from "../../Compunents/SignUp";
+
+
 
 const Home = () => {
   const categories = [
@@ -30,7 +35,7 @@ const Home = () => {
     },
     {
       title: "Economy",
-      img: "/Frame 484.png",
+      img: "/Frame ec.png",
 
       items: [
         { text: "Trade regulations", link: "/CategoriesDetail" },
@@ -113,20 +118,79 @@ const Home = () => {
     },
   ];
 
+
+
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    date: '',
+    plan: 'Pricing Plans',
+    message: ''
+  });
+
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+  };
+  console.log(formData);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Simple validation to ensure all fields are filled
+
+
+    try {
+      const upload = await userApi.sendmessage(formData);
+      console.log('Message sent successfully:', upload);
+      toast.success(upload.message);
+      // Clear the form
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        date: '',
+        plan: 'Pricing Plans',
+        message: ''
+      });
+    } catch (err) {
+      console.log('Error sending message:', err);
+      toast.error(err.response.data.message);
+      console.log(err.response.data.message);
+    }
+  };
+
+
+
+
+  const [isModalSignUp, setIsModalSignUp] = useState(false);
+
+  const SignUpModal = () => {
+    // console.log("Toggle modal");
+    setIsModalSignUp(!isModalSignUp);
+  };
+
+
   return (
     <>
+      <Toaster />
       {/* Hero Section */}
       <div className=" relative w-100 bg-bghero   bg-no-repeat bg-cover">
         <Navbar />
 
         <div className="h-[85vh]  w-11/12  2xl:w-4/6   mx-auto text-center flex flex-col items-center justify-center">
-          <h2 className="text-white text-4xl md:text-4xl lg:text-6xl font-semibold ">
+          <h2 className="text-white text-4xl md:text-4xl lg:text-6xl font-semibold tracking-in-contract-bck">
             Your custom policy content, delivered{" "}
           </h2>
-          <h2 className="text-white text-4xl md:text-4xl lg:text-6xl font-semibold md:mt-10">
+          <h2 className="text-white text-4xl md:text-4xl lg:text-6xl font-semibold md:mt-10 tracking-in-contract-bck">
             fast with the precision of AI
           </h2>
-          <button className="px-[100px] text-white  py-3 border border-white rounded-full   duration-200 mt-10">
+          <button onClick={SignUpModal} className="px-[100px] text-white  py-3 border border-white rounded-full   duration-200 mt-10">
             Get Started
           </button>
         </div>
@@ -156,11 +220,11 @@ const Home = () => {
 
               <div className="flex flex-col gap-y-7 py-0 md:py-8  bg-no-repeat">
                 <h2 className="text-theme text-3xl md:text-4xl lg:text-5xl font-semibold">
-                  Who are we
+                  Who  we are
                 </h2>
 
                 <p className="lg:text-xl font-normal text-ptheme text-md text-justify md:text-left">
-                EUaffairs offers a subscription-based service designed to help businesses and individuals stay informed and compliant with the constantly evolving EU policy landscape. We focus on Healthcare, Sustainability, Economy, and Politics. Through our user-friendly website, we provide timely, relevant, and comprehensive reports tailored to your needs. Our mission is to empower our users with the insights necessary to make informed decisions and navigate the complex EU regulatory environment effectively.
+                  EUaffairs offers a subscription-based service designed to help businesses and individuals stay informed and compliant with the constantly evolving EU policy landscape. We focus on Healthcare, Sustainability, Economy, and Politics. Through our user-friendly website, we provide timely, relevant, and comprehensive reports tailored to your needs. Our mission is to empower our users with the insights necessary to make informed decisions and navigate the complex EU regulatory environment effectively.
                 </p>
 
                 <div></div>
@@ -209,7 +273,7 @@ const Home = () => {
                         // to={`/CategoriesDetail/${encodeURIComponent(
                         //   category.title
                         // )}/${encodeURIComponent(item.text)}`}
-                        className="text-ptheme hover:underline"
+                        className="text-ptheme "
                         rel="noopener noreferrer"
                       >
                         {item.text}
@@ -237,6 +301,8 @@ const Home = () => {
         <div className=" w-11/12 md:5/6 lg:5/6 2xl:w-4/6    mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-12 p-4 gap-7">
             {plans.map((plan, index) => (
+              <>
+           
               <div
                 key={index}
                 className="bg-white rounded-lg shadow-2xl p-6 col-span-6 flex flex-col justify-between"
@@ -270,7 +336,17 @@ const Home = () => {
                     {plan.buttonText} &rarr;
                   </button>
                 </div> */}
+         
+
+
+         <button onClick={SignUpModal} className=" text-white hover:text-theme bg-theme hover:bg-transparent  py-3 border border-theme rounded-full   duration-200  max-w-48">
+                  Get Started &rarr;
+                </button>
               </div>
+
+          
+              </>
+
             ))}
           </div>
         </div>
@@ -369,63 +445,18 @@ const Home = () => {
                 </svg>
                 Email us
               </p>
-              <p className="text-gray-800 font-medium">euaffairs@gmail.com</p>
+              <p className="text-gray-800 font-medium">contact@euaffairs.org</p>
             </div>
             <div>
               <p className="text-gray-600 mb-4">Follow us on social media</p>
               <div className="flex space-x-4">
-                <a href="#" className="text-gray-400 hover:text-blue-600">
-                  <svg
-                    className="w-6 h-6"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M12 2.04c-5.46 0-9.92 4.46-9.92 9.92 0 4.38 3.51 8.01 8 8.82v-6.23h-2.42v-2.59h2.42v-2c0-2.38 1.44-3.7 3.56-3.7 1.01 0 1.88.08 2.14.11v2.48h-1.47c-1.16 0-1.39.55-1.39 1.36v1.78h2.78l-.36 2.59h-2.42v6.23c4.49-.81 8-4.44 8-8.82 0-5.46-4.46-9.92-9.92-9.92z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
+                <a href="https://www.linkedin.com/company/euaffairs/?viewAsMember=true
+" className="text-gray-400 hover:text-blue-600">
+               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
+  <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/>
+</svg>
                 </a>
-                <a href="#" className="text-gray-400 hover:text-blue-600">
-                  <svg
-                    className="w-6 h-6"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M22.23 5.64c-.81.36-1.68.61-2.59.72a4.5 4.5 0 001.98-2.49 9.02 9.02 0 01-2.86 1.1 4.52 4.52 0 00-7.72 4.11A12.81 12.81 0 013.05 4.6a4.52 4.52 0 001.4 6.03 4.42 4.42 0 01-2.05-.57v.06a4.52 4.52 0 003.63 4.42 4.54 4.54 0 01-2.03.08 4.52 4.52 0 004.21 3.12A9.05 9.05 0 012 19.52a12.76 12.76 0 006.92 2.03c8.3 0 12.84-6.88 12.84-12.84 0-.2-.01-.4-.02-.59a9.22 9.22 0 002.27-2.35z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </a>
-                <a href="#" className="text-gray-400 hover:text-blue-600">
-                  <svg
-                    className="w-6 h-6"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M12 2.04c-5.46 0-9.92 4.46-9.92 9.92 0 4.38 3.51 8.01 8 8.82v-6.23h-2.42v-2.59h2.42v-2c0-2.38 1.44-3.7 3.56-3.7 1.01 0 1.88.08 2.14.11v2.48h-1.47c-1.16 0-1.39.55-1.39 1.36v1.78h2.78l-.36 2.59h-2.42v6.23c4.49-.81 8-4.44 8-8.82 0-5.46-4.46-9.92-9.92-9.92z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </a>
-                <a href="#" className="text-gray-400 hover:text-blue-600">
-                  <svg
-                    className="w-6 h-6"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M12 0c-4.32 0-7.83 3.5-7.83 7.83 0 5.47 4.9 11.06 7.83 16.15 2.93-5.09 7.83-10.68 7.83-16.15C19.83 3.5 16.32 0 12 0zm0 11.31a3.48 3.48 0 01-3.48-3.48A3.48 3.48 0 0112 4.35a3.48 3.48 0 013.48 3.48A3.48 3.48 0 0112 11.31z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </a>
+              
               </div>
             </div>
           </div>
@@ -434,47 +465,66 @@ const Home = () => {
             <h2 className="text-2xl font-bold text-blue-900 mb-4">
               Contact Us Form
             </h2>
-            <form>
+            <form onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <input
                   type="text"
                   placeholder="Full Name"
                   className="border border-gray-300 p-2 rounded-md w-full"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
                 />
                 <input
                   type="email"
                   placeholder="Email Address"
                   className="border border-gray-300 p-2 rounded-md w-full"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                 />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <input
                   type="text"
-                  placeholder="Subject"
+                  placeholder="subject"
                   className="border border-gray-300 p-2 rounded-md w-full"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
                 />
                 <input
                   type="date"
                   className="border border-gray-300 p-2 rounded-md w-full"
+                  name="date"
+                  value={formData.date}
+                  onChange={handleChange}
                 />
               </div>
               <div className="mb-4">
-                <select className="border border-gray-300 p-2 rounded-md w-full">
+                <select
+                  className="border border-gray-300 p-2 rounded-md w-full"
+                  name="plan"
+                  value={formData.plan}
+                  onChange={handleChange}
+                >
                   <option>Pricing Plans</option>
-                  <option>Plan A</option>
-                  <option>Plan B</option>
-                  <option>Plan C</option>
+                  <option>basic</option>
+                  <option>premium</option>
                 </select>
               </div>
               <div className="mb-4">
                 <textarea
                   placeholder="Message"
                   className="border border-gray-300 p-2 rounded-md w-full h-32"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
                 />
               </div>
               <button
-                // type="submit"
-                className="md:px-[100px] px-[50px] bg-theme text-white  py-3 border border-theme rounded-full  hover:bg-transparent hover:text-theme duration-200"
+                type="submit"
+                className="md:px-[100px] px-[50px] bg-theme text-white py-3 border border-theme rounded-full hover:bg-transparent hover:text-theme duration-200"
               >
                 Send Message &rarr;
               </button>
@@ -486,6 +536,10 @@ const Home = () => {
       {/* Contact Us End*/}
 
       <Footer />
+
+
+
+      {isModalSignUp && <SignUp toggle={SignUpModal} />}
     </>
   );
 };

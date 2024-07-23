@@ -16,9 +16,9 @@ const SavedReports = () => {
   const [error, setError] = useState(null);
   const getReport = async () => {
     try {
-      const response = await userApi.getReport();
-      console.log("User data:", response.reports);
-      const reports = response?.reports || [];
+      const response = await userApi.getSaveReport();
+      console.log("User data:", response.savedReports);
+      const reports = response?.savedReports.reverse() || [];
       setReport(reports);
       if (reports.length === 0) {
         toast.error("There is no report");

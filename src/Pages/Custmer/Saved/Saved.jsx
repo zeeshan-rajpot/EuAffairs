@@ -13,7 +13,7 @@ const Saved = () => {
     try {
       const response = await userApi.getSavedArticle();
       console.log("User data:", response);
-      setSavedArticles(response?.savedArticles || []);
+      setSavedArticles(response?.savedArticles.reverse() || []);
     } catch (err) {
       setError(err.message);
       console.log(err);
