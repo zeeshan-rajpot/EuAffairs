@@ -11,7 +11,7 @@ function TabContent({ activeTab }) {
       case "second":
         return <SavedReports title="Saved Reports" />;
       case "third":
-        return <TailoredReport title="Tailored Report" />;
+        return <TailoredReport title="Tailored Reports" />;
       default:
         return null;
     }

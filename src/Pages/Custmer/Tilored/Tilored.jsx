@@ -40,7 +40,7 @@ const Tilored = () => {
       <div className="tabs flex items-center justify-between p-4 bg-secColor text-lg font-semibold rounded-3xl">
         <button onClick={() => setActiveTab('first')} className={getButtonClass('first')}>Your needs</button>
         <button onClick={() => setActiveTab('second')} className={getButtonClass('second')}>Saved Reports</button>
-        <button onClick={() => setActiveTab('third')} className={getButtonClass('third')}>Tailored Report</button>
+        <button onClick={() => setActiveTab('third')} className={getButtonClass('third')}>Tailored Reports</button>
       </div>
       <div className="bg-white p-4 rounded-3xl">
         <TabContent activeTab={activeTab} />

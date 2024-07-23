@@ -17,9 +17,10 @@ const TailoredReport = () => {
   const getReport = async () => {
     try {
       const response = await userApi.getReport();
-      console.log("User data:", response.reports);
-      setReport(response?.reports || []);
+      console.log("User data:", response);
+      setReport(response?.reports.reverse() || []);
     } catch (err) {
+      console.log(err)
       setError(err.message);
       console.log(err);
     } finally {

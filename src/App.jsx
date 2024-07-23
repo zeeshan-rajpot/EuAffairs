@@ -15,6 +15,8 @@ import Payment from "./Pages/Payment/Payment";
 import ReportsDetail from "./Pages/Custmer/ReportsDetail/ReportsDetail";
 import ArticleDetail from "./Pages/Custmer/ArticleDetail/ArticleDetail";
 
+import { ArticlesProvider } from "./Pages/Custmer/ArticlesContext";
+
 function App() {
   const router = createBrowserRouter([
     {
@@ -49,23 +51,26 @@ function App() {
       path: "/Tilored",
       element: <Tilored />,
     },
-   
     {
       path: "/Payment",
       element: <Payment />,
-    }, 
-      {
-        path:"/ReportsDetail/:heading/:createdAt/:category/:reportDescription/:id",
+    },
+    {
+      path: "/ReportsDetail/:heading/:createdAt/:category/:reportDescription/:id",
       element: <ReportsDetail />,
     },
     {
-      path:"/ArticleDetail/:heading/:createdAt/:category/:reportDescription/:image/:id",
-     element: <ArticleDetail />,
-   },
- 
+      path: "/ArticleDetail/:heading/:createdAt/:category/:reportDescription/:image/:id",
+      element: <ArticleDetail />,
+    },
   ]);
 
-  return <RouterProvider router={router} />;
-}
 
+
+return (
+  <ArticlesProvider>
+    <RouterProvider router={router} />
+  </ArticlesProvider>
+);
+}
 export default App;

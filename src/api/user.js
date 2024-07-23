@@ -70,9 +70,9 @@ const addIntrest = async (uploadData) => {
       throw error;
     }
   };
-   const getReport = async () => {
+   const getSaveReport = async () => {
     try {
-      const response = await apiClient.get(`user/reports`);
+      const response = await apiClient.get(`user/saved-reports`);
       return response.data;
     } catch (error) {
       console.error("Error fetching user:", error);
@@ -101,6 +101,15 @@ const addIntrest = async (uploadData) => {
   const getSavedArticle = async () => {
     try {
       const response = await apiClient.get(`user/saved-articles`);
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching user:", error);
+      throw error;
+    }
+  };
+const getReport = async () => {
+    try {
+      const response = await apiClient.get(`user/reports`);
       return response.data;
     } catch (error) {
       console.error("Error fetching user:", error);
@@ -143,6 +152,14 @@ const addIntrest = async (uploadData) => {
       throw error;
     }
   };
+ const sendmessage = async (formData) => {
+    try {
+      const response = await apiClient.post(`user/send-message`, formData);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  };
 
 export default {
     login,
@@ -159,4 +176,6 @@ export default {
     savearticle,
     savereport,
     uploadProfile,
+    sendmessage,
+    getSaveReport,
 };

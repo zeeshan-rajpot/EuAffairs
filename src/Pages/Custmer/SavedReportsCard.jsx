@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 import { format } from 'date-fns';
+import EllipsizedParagraph from "../../Compunents/EllipsizedParagraph ";
 
 const SavedReportsCard = ({ heading, createdAt, updatedAt, category, reportDescription, loading ,_id}) => {
   const formatDate = (isoString) => {
@@ -33,7 +34,8 @@ const SavedReportsCard = ({ heading, createdAt, updatedAt, category, reportDescr
           <div className="h-4 bg-gray-300 rounded w-5/6 shimmer"></div>
         </div>
       ) : (
-        <p className="text-gray-600 mb-4">{reportDescription}</p>
+        <EllipsizedParagraph text={reportDescription}/>
+        // <p className="text-gray-600 mb-4">{reportDescription}</p>
       )}
       {!loading && 
        <Link

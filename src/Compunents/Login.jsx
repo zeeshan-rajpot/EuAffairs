@@ -71,7 +71,7 @@ const Login = ({ toggle }) => {
 
           <div className="p-6 pt-1 space-y-4 text-center">
             <h3 className="text-xl md:text-3xl font-semibold">EU AFFAIRS</h3>
-            <p className="text-lg text-gray-500 font-semibold">Admin Login</p>
+            <p className="text-lg text-gray-500 font-semibold"> Login </p>
             <div className="input-container shadow mt-3 rounded-3xl bg-[#fafafa] flex items-center p-2"
              
              >

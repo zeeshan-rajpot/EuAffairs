@@ -139,7 +139,7 @@ const Sidebar = (props) => {
                   alt="checkin_icon"
                   className="w-8 ms-4"
                 />
-                <span className="ms-3 text-lg font-normal">Tailored</span>
+                <span className="ms-3 text-lg font-normal">Tailored Reports</span>
               </NavLink>
             </li>
             <li>
@@ -155,7 +155,7 @@ const Sidebar = (props) => {
                 }
               >
                 <img src="/save.png" alt="info_icon" className="w-8 ms-4" />
-                <span className="ms-3 text-lg font-normal">Save</span>
+                <span className="ms-3 text-lg font-normal">Save Reports</span>
               </NavLink>
             </li>
             <li>

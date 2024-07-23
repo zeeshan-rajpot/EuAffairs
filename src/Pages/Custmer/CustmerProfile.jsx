@@ -7,6 +7,8 @@ import toast, { Toaster } from 'react-hot-toast';
 
 
 const CustmerProfile = () => {
+
+  
   const [activeTab, setActiveTab] = useState("first");
   const [username, setUsername] = useState('');
   const [profileimage, setProfileimage] = useState('');
@@ -211,6 +213,7 @@ const CustmerProfile = () => {
       console.log(upload);
       toast.success(upload.message);
       getProfile();
+      getArticles();
     } catch (err) {
       const errorMessage = err.response?.data?.message || "An error occurred.";
       setError(errorMessage);
@@ -304,7 +307,7 @@ console.log(file)
                 onClick={() => setActiveTab("third")}
                 className={getButtonClass("third")}
               >
-                Tailored Report
+               Tailored Reports
               </button>
             </div>
             <div className="bg-white p-4 rounded-3xl">
