@@ -117,6 +117,25 @@ const getReport = async () => {
     }
   };
 
+const getBlog = async () => {
+    try {
+      const response = await apiClient.get(`user/all/blogs`);
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching user:", error);
+      throw error;
+    }
+  };
+const getBloguser = async () => {
+    try {
+      const response = await apiClient.get(`user/blogs`);
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching user:", error);
+      throw error;
+    }
+  };
+
 
 
 
@@ -178,4 +197,6 @@ export default {
     uploadProfile,
     sendmessage,
     getSaveReport,
+    getBlog,
+    getBloguser,
 };
