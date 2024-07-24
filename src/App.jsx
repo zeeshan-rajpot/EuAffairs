@@ -16,6 +16,7 @@ import ReportsDetail from "./Pages/Custmer/ReportsDetail/ReportsDetail";
 import ArticleDetail from "./Pages/Custmer/ArticleDetail/ArticleDetail";
 
 import { ArticlesProvider } from "./Pages/Custmer/ArticlesContext";
+import BlogsDashbord from "./Pages/Custmer/BlogsDashbord/blogsDashbord";
 
 function App() {
   const router = createBrowserRouter([
@@ -62,6 +63,9 @@ function App() {
     {
       path: "/ArticleDetail/:heading/:createdAt/:category/:reportDescription/:image/:id",
       element: <ArticleDetail />,
+    },    {
+      path: "BlogDashbord",
+      element: <BlogsDashbord />,
     },
   ]);
 
