@@ -191,7 +191,7 @@ const Sidebar = (props) => {
                 }
               >
                 <img
-                  src="/request.png"
+                  src="/Capa_1.png"
                   alt="money_icon"
                   className="w-8 ms-4"
                 />
