@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 import clsx from "clsx";
 import "./sidebar.css";
 
-
 const Sidebar = (props) => {
   const [activeTab, setActiveTab] = useState(props.actTab);
   const [isOpen, setIsOpen] = useState(false);
@@ -23,6 +22,10 @@ const Sidebar = (props) => {
     setActiveTab(tab);
   };
 
+  const clearStorage = () => {
+    localStorage.clear();
+  };
+
   return (
     <>
       <div className="flex items-center justify-between ">
@@ -31,7 +34,6 @@ const Sidebar = (props) => {
             src="/EU affairs.png"
             className="inline-flex items-center px-2 mt-1 ms-3 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 w-[194px] "
           />
-       
         </div>
         <button
           onClick={toggleSidebar}
@@ -114,11 +116,7 @@ const Sidebar = (props) => {
                   )
                 }
               >
-                <img
-                  src="/News.png"
-                  alt="user_icon"
-                  className="w-8 ms-4"
-                />
+                <img src="/News.png" alt="user_icon" className="w-8 ms-4" />
                 <span className="ms-3 text-lg font-normal">News Flash</span>
               </NavLink>
             </li>
@@ -139,7 +137,9 @@ const Sidebar = (props) => {
                   alt="checkin_icon"
                   className="w-8 ms-4"
                 />
-                <span className="ms-3 text-lg font-normal">Tailored Reports</span>
+                <span className="ms-3 text-lg font-normal">
+                  Tailored Reports
+                </span>
               </NavLink>
             </li>
             <li>
@@ -170,11 +170,7 @@ const Sidebar = (props) => {
                   )
                 }
               >
-                <img
-                  src="/request.png"
-                  alt="money_icon"
-                  className="w-8 ms-4"
-                />
+                <img src="/request.png" alt="money_icon" className="w-8 ms-4" />
                 <span className="ms-3 text-lg font-normal">Request</span>
               </NavLink>
             </li>
@@ -209,6 +205,7 @@ const Sidebar = (props) => {
                     }
                   )
                 }
+                onClick={clearStorage}
               >
                 <img src="/logout.png" alt="logout_icon" className="w-8 ms-4" />
                 <span className="ms-3 text-lg font-normal">Logout</span>
