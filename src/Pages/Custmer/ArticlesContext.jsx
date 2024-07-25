@@ -1,6 +1,5 @@
-// ArticlesContext.js
-import React, { createContext, useContext, useState } from 'react';
-import { userApi } from '../../api';
+import React, { createContext, useState, useContext, useEffect } from "react";
+import { userApi } from "../../api";
 
 const ArticlesContext = createContext();
 
@@ -10,18 +9,19 @@ export const ArticlesProvider = ({ children }) => {
   const [error, setError] = useState(null);
 
   const getArticles = async () => {
-    setLoading(true);
     try {
       const response = await userApi.getArticle();
-      console.log("User data:", response);
-      setArticles(response?.articles || []);
+      setArticles(response?.articles.reverse() || []);
     } catch (err) {
       setError(err.message);
-      console.log(err);
     } finally {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    getArticles();
+  }, []);
 
   return (
     <ArticlesContext.Provider value={{ articles, loading, error, getArticles }}>
