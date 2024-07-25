@@ -186,7 +186,11 @@ const Sidebar = (props) => {
                   )
                 }
               >
-                <img src="/request.png" alt="money_icon" className="w-8 ms-4" />
+                <img
+                  src="/Capa_1.png"
+                  alt="money_icon"
+                  className="w-8 ms-4"
+                />
                 <span className="ms-3 text-lg font-normal">Blogs</span>
               </NavLink>
             </li>
