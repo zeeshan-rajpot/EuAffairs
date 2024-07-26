@@ -138,7 +138,7 @@ const Home = () => {
       [name]: value
     });
   };
-  console.log(formData);
+  // console.log(formData);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -386,40 +386,40 @@ const Home = () => {
         <p className="lg:text-xl font-normal text-secColor ">Blog Posts</p>
       </div>
 
-      <div className=" bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-7xl mx-auto">
-          {blog.map((article, index) => (
-            <div key={index} className={`bg-white p-6 rounded-lg shadow-md `}>
-              <div className="flex flex-col md:flex-row">
-                <div className="md:w-1/3 lg:w-1/4">
-                  <img
-                    src={article.thumbnail}
-                    alt={article.title}
-                    className="md:w-[150px] md:h-[150px] w-full h-auto  rounded-lg mb-4 md:mb-0"
-                  />
-                </div>
-                <div className="md:w-2/3 lg:w-3/4 md:pl-4">
-                  <p className="text-sm text-gray-500 mb-2">
-                    {article.updatedAt} · 
-                    {/* {article.readTime} ·{" "} */}
-                    <span className="text-secColor">{article.category}</span>
-                  </p>
-                  <h2 className="text-xl font-bold text-gray-900 mb-2">
-                    {article.heading}
-                  </h2>
-                  <p className="text-gray-700 mb-4">{article.blogDescription}</p>
-                  <Link
-                    to="/BlogDetail"
-                    className="text-blue-600 hover:underline"
-                  >
-                    Read More &rarr;
-                  </Link>
-                </div>
+      <div className="bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-7xl mx-auto">
+        {blog.map((article, index) => (
+          <div key={index} className="bg-white p-6 rounded-lg shadow-md">
+            <div className="flex flex-col md:flex-row">
+              <div className="md:w-1/3 lg:w-1/4">
+                <img
+                  src={article.thumbnail}
+                  alt={article.title}
+                  className="md:w-[150px] md:h-[150px] w-full h-auto rounded-lg mb-4 md:mb-0"
+                />
+              </div>
+              <div className="md:w-2/3 lg:w-3/4 md:pl-4">
+                <p className="text-sm text-gray-500 mb-2">
+                  {article.updatedAt} · 
+                  {/* {article.readTime} ·{" "} */}
+                  <span className="text-secColor">{article.category}</span>
+                </p>
+                <h2 className="text-xl font-bold text-gray-900 mb-2">
+                  {article.heading}
+                </h2>
+                <p className="text-gray-700 mb-4">{article.blogDescription}</p>
+                <Link
+                  to={`/Blog/${encodeURIComponent(article.heading)}/${encodeURIComponent(article.blogDescription)}/${encodeURIComponent(article.thumbnail)}/${encodeURIComponent(article.category)}/${encodeURIComponent(article.updatedAt)}`}
+                  className="text-blue-600 hover:underline"
+                >
+                  Read More &rarr;
+                </Link>
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
+    </div>
 
       {/* Blogs End */}
 

@@ -25,9 +25,12 @@ function App() {
       element: <Home />,
     },
     {
-      path: "/BlogDetail",
+      path: "/Blog/:heading/:blogDescription/:thumbnail/:category/:updatedAt",
       element: <Detail />,
     },
+
+    // to={`/BlogDetail/${article.thumbnail}/${article.thumbnail}/${article.blogDescription}/${article.category}/${article.updatedAt}/${article.title}`}
+
     {
       path: "/CategoriesDetail/:title/:text",
       element: <Categories />,

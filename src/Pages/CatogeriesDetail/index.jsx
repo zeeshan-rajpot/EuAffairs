@@ -62,7 +62,7 @@ const CategoryCard = ({ title, date, link, image }) => (
     <div className="flex items-center justify-between">
       <p className="text-secColor mt-2">{date}</p>
       <Link
-        to="/BlogDetail"
+        to="/Blog"
         className="text-blue-500 hover:underline mt-2 block"
       >
         See more

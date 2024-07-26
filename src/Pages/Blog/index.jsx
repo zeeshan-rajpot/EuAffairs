@@ -1,44 +1,54 @@
 import React, { useState } from "react";
-
+import { useParams } from 'react-router-dom';
+import './style.css'
+import { format } from 'date-fns';
 import Navbar from "../../Compunents/Navbar";
 import Footer from "../../Compunents/Footer";
 
 const Detail = () => {
+
+
+  const { thumbnail, blogDescription,category ,updatedAt , heading} = useParams();
+  const formatDate = (isoString) => {
+    return format(new Date(isoString), 'dd-MMMM-yyyy');
+  };
+
   return (
     <>
-      <div className=" relative w-100 bg-bgBlogDetail   bg-no-repeat 2xl:bg-cover bg-cover">
+ 
+
+      <div className=" relative w-100   bg-no-repeat 2xl:bg-contain xl:bg-contain bg-cover"
+      style={{
+        backgroundImage: `url(${thumbnail})`,
+        // height: '75vh',
+        backgroundPosition:'center',
+      }}
+      >
+           <div className="glass opacity-80 relative">
         <Navbar />
 
-        <div className="h-[75vh]  w-11/12  2xl:w-4/6   mx-auto text-center flex flex-col items-center justify-center"></div>
+    </div>
+
+        <div className="h-[50vh] md:h-[75vh] w-11/12  2xl:w-4/6   mx-auto text-center flex flex-col items-center justify-center"></div>
       </div>
 
       <div className="   ">
         <div className=" p-8  w-11/12  2xl:w-4/6   mx-auto">
           <div className="flex justify-between items-start">
             <h1 className="text-4xl font-bold text-gray-900">
-              Veterinary Public Health:
+             {heading}
             </h1>
             <span className="text-secColor text-sm md:text-2xl font-semibold">
-              12, June 2024
+            {formatDate(updatedAt)}
             </span>
           </div>
-          <h2 className="mt-4 text-2xl font-semibold text-gray-700">
+          {/* <h2 className="mt-4 text-2xl font-semibold text-gray-700">
             Protecting Both Animal and Human Health
-          </h2>
+          </h2> */}
           <p className="mt-4 text-gray-600 text-xl">
-            Veterinary public health (VPH) is a multidisciplinary field that
-            focuses on the prevention and control of diseases that affect both
-            animals and humans. It encompasses a wide range of activities aimed
-            at ensuring the health and safety of communities through the
-            management of zoonotic diseases, food safety, antimicrobial
-            resistance, environmental health, and emergency preparedness.
+            {blogDescription}
           </p>
-          <p className="mt-2 text-gray-600 text-xl">
-            The One Health approach, which recognizes the interconnectedness of
-            human, animal, and environmental health, is a cornerstone of
-            veterinary public
-            health...............................................
-          </p>
+        
 
           <div className="  flex items-center justify-center ">
             <div className="bg-white p-8 rounded-lg  max-w-md w-full text-center">
