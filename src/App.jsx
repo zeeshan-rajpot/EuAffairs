@@ -17,6 +17,8 @@ import ArticleDetail from "./Pages/Custmer/ArticleDetail/ArticleDetail";
 
 import { ArticlesProvider } from "./Pages/Custmer/ArticlesContext";
 import BlogsDashbord from "./Pages/Custmer/BlogsDashbord/blogsDashbord";
+import PrivacyPolicy from "./Pages/PrivacyPolicy/PrivacyPolicy";
+import Terms from "./Pages/Terms/Terms";
 
 function App() {
   const router = createBrowserRouter([
@@ -66,9 +68,17 @@ function App() {
     {
       path: "/ArticleDetail/:heading/:createdAt/:category/:reportDescription/:image/:id",
       element: <ArticleDetail />,
-    },    {
+    },   
+     {
       path: "BlogDashbord",
       element: <BlogsDashbord />,
+    }, 
+    {
+      path: "/PrivacyPolicy",
+      element: <PrivacyPolicy />,
+    }, {
+      path: "/Terms",
+      element: <Terms />,
     },
   ]);
 

@@ -174,7 +174,7 @@ const Sidebar = (props) => {
                 <span className="ms-3 text-lg font-normal">Request</span>
               </NavLink>
             </li>
-            <li>
+            {/* <li>
               <NavLink
                 to="/BlogDashbord"
                 className={({ isActive }) =>
@@ -193,7 +193,7 @@ const Sidebar = (props) => {
                 />
                 <span className="ms-3 text-lg font-normal">Blogs</span>
               </NavLink>
-            </li>
+            </li> */}
             <li>
               <NavLink
                 to="/"

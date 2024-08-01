@@ -56,7 +56,10 @@ html {
   -webkit-box-orient: vertical;
 }
 
-
+br{
+margin-top: 10px;
+margin-bottom: 10px;
+}
 .tracking-in-contract-bck {
 	animation: tracking-in-contract-bck 4s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
 }

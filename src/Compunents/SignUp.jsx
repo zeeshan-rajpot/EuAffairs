@@ -7,6 +7,8 @@ const SignUp = ({ toggle }) => {
 
 
     const [email, setEmail] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [loading, setLoading] = useState(false);
@@ -18,6 +20,12 @@ const SignUp = ({ toggle }) => {
       setLoading(true);
       setError(null);
   
+      if (!firstName || !lastName || !email || !password || !confirmPassword) {
+        setError("All fields are required");
+        setLoading(false);
+        return;
+      }
+      
       if (password !== confirmPassword) {
         setError("Passwords do not match");
         setLoading(false);
@@ -25,6 +33,8 @@ const SignUp = ({ toggle }) => {
       }
 
       const credentials={
+        firstName,
+        lastName,
         email,
         password
       }
@@ -74,6 +84,31 @@ const SignUp = ({ toggle }) => {
               Sign Up
             </p>
             <div className="input-container shadow mt-3 rounded-3xl bg-[#fafafa]">
+              <img src="/Frame 33.png" className="w-6" alt="Email Icon" />
+              <input
+                type="test"
+                name='firstName'
+                placeholder="lastName"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                className="bg-[#fafafa] "
+              />
+            </div>  
+            
+            
+            
+             <div className="input-container shadow mt-3 rounded-3xl bg-[#fafafa]">
+              <img src="/Frame 33.png" className="w-6" alt="Email Icon" />
+              <input
+                type="text"
+                name='lastName'
+                placeholder="LastName"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                className="bg-[#fafafa] "
+              />
+            </div>  
+             <div className="input-container shadow mt-3 rounded-3xl bg-[#fafafa]">
               <img src="/Frame 33.png" className="w-6" alt="Email Icon" />
               <input
                 type="email"
