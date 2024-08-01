@@ -320,7 +320,7 @@ const Home = () => {
             Our Services
           </h2>
           <p className="lg:text-xl font-normal text-secColor ">
-            Choose a plan that suits you.
+            Choose a plan that suits you 
           </p>
         </div>
         <div className=" w-11/12 md:5/6 lg:5/6 2xl:w-4/6    mx-auto">

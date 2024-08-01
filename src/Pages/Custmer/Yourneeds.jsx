@@ -3,6 +3,7 @@ import NeedsCard from "./NeedsCard";
 import { useArticles } from "./ArticlesContext"; 
 const Yourneeds = () => {
   const { articles, loading } = useArticles();
+  console.log(articles)
 
   return (
     <div className="container mx-auto p-4">
