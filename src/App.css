@@ -83,33 +83,38 @@ margin-bottom: 10px;
 }
  */
 
-
-
  .type-writer-container {
-  display: inline-block;
+  display: block;
+  white-space: pre-wrap; /* Allows text wrapping within the container */
+  overflow: hidden;
+  word-break: break-word; /* Break long words and wrap */
+  max-width: 100%; /* Ensure the container does not overflow the screen */
+  text-align: center; /* Center the text within the container */
+  line-height: 1.2; /* Adjust the line height for readability */
+  padding: 0 1rem; /* Add padding to prevent text from touching the edges */
 }
 
 .type-writer-effect {
   display: inline-block;
-  white-space: nowrap;
   overflow: hidden;
-  animation: animated-text 6s steps(29, end) 1 normal both;
+  animation: animated-text 2s steps(30, end) 1 normal both; /* Faster animation */
+  white-space: nowrap; /* Prevent wrapping within each span */
 }
 
 .type-writer-effect:nth-child(2) {
-  animation-delay: 6s;
+  animation-delay: 2s; /* Adjust the delay to match the new duration */
 }
 
-/* Cursor at the end of text */
 .type-writer-cursor {
   display: inline-block;
   border-right: solid 3px rgba(0, 255, 0, 0.75);
   animation: animated-cursor 600ms steps(29, end) infinite;
-  animation-delay: 12s; /* Delay this to start blinking after the text animations */
-  animation-duration: 1.2s; /* Blink twice */
-  animation-fill-mode: forwards; /* Keep the final state */
+  animation-delay: 4s; /* Adjust the delay to match the new duration */
+  animation-duration: 1.2s;
+  animation-fill-mode: forwards;
 }
 
+/* text animation */
 @keyframes animated-text {
   from {
     width: 0;
@@ -119,6 +124,7 @@ margin-bottom: 10px;
   }
 }
 
+/* cursor animation */
 @keyframes animated-cursor {
   from {
     border-right-color: rgba(0, 255, 0, 0.75);
@@ -128,9 +134,29 @@ margin-bottom: 10px;
   }
 }
 
-/* Static cursor after animation */
 .type-writer-cursor-static {
   border-right: none;
   content: '';
 }
 
+/* Responsive design */
+@media (max-width: 767px) { /* Mobile screens */
+  .type-writer-container {
+    font-size: 2rem; /* Increase the font size for mobile */
+  }
+  .type-writer-effect {
+    font-size: 2rem; /* Ensure spans have the same font size */
+  }
+}
+
+
+
+@media (max-width: 480px) { /* Extra small screens */
+  .type-writer-container {
+    font-size: 1.4rem; /* Further reduce the font size for very small screens */
+
+  }
+  .type-writer-effect {
+    font-size: 1.4rem; /* Ensure spans have the same font size */
+  }
+}
