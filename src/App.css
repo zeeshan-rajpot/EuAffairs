@@ -60,6 +60,9 @@ br{
 margin-top: 10px;
 margin-bottom: 10px;
 }
+
+/* 
+
 .tracking-in-contract-bck {
 	animation: tracking-in-contract-bck 4s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
 }
@@ -77,5 +80,57 @@ margin-bottom: 10px;
     transform: translateZ(0);
     opacity: 1;
   }
+}
+ */
+
+
+
+ .type-writer-container {
+  display: inline-block;
+}
+
+.type-writer-effect {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: animated-text 6s steps(29, end) 1 normal both;
+}
+
+.type-writer-effect:nth-child(2) {
+  animation-delay: 6s;
+}
+
+/* Cursor at the end of text */
+.type-writer-cursor {
+  display: inline-block;
+  border-right: solid 3px rgba(0, 255, 0, 0.75);
+  animation: animated-cursor 600ms steps(29, end) infinite;
+  animation-delay: 12s; /* Delay this to start blinking after the text animations */
+  animation-duration: 1.2s; /* Blink twice */
+  animation-fill-mode: forwards; /* Keep the final state */
+}
+
+@keyframes animated-text {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes animated-cursor {
+  from {
+    border-right-color: rgba(0, 255, 0, 0.75);
+  }
+  to {
+    border-right-color: transparent;
+  }
+}
+
+/* Static cursor after animation */
+.type-writer-cursor-static {
+  border-right: none;
+  content: '';
 }
 

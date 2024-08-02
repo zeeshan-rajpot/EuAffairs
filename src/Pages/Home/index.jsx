@@ -209,12 +209,12 @@ const Home = () => {
         <Navbar />
 
         <div className="h-[85vh]  w-11/12  2xl:w-4/6   mx-auto text-center flex flex-col items-center justify-center">
-          <h2 className="text-white text-4xl md:text-4xl lg:text-6xl font-semibold tracking-in-contract-bck">
-            Your custom policy content, delivered{" "}
-          </h2>
-          <h2 className="text-white text-4xl md:text-4xl lg:text-6xl font-semibold md:mt-10 tracking-in-contract-bck">
-            fast with the precision of AI
-          </h2>
+        <h2 className="text-white text-4xl md:text-4xl lg:text-6xl font-semibold tracking-in-contract-bck type-writer-container">
+  <span className="type-writer-effect">Your custom policy content, delivered</span>
+  <span className="type-writer-effect">fast with the precision of AI</span>
+  <span className="type-writer-cursor"></span>
+</h2>
+
           <button onClick={SignUpModal} className="px-[100px] text-white  py-3 border border-white rounded-full   duration-200 mt-10">
             Get Started
           </button>
