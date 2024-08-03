@@ -88,7 +88,7 @@ const SignUp = ({ toggle }) => {
               <input
                 type="test"
                 name='firstName'
-                placeholder="lastName"
+                placeholder="First Name"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
                 className="bg-[#fafafa] "
@@ -102,7 +102,7 @@ const SignUp = ({ toggle }) => {
               <input
                 type="text"
                 name='lastName'
-                placeholder="LastName"
+                placeholder="Last Name"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
                 className="bg-[#fafafa] "
