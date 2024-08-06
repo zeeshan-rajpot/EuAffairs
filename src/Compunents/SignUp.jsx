@@ -3,60 +3,63 @@ import { Link } from 'react-router-dom';
 import { userApi } from '../api';
 
 const SignUp = ({ toggle }) => {
+  const [email, setEmail] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false);
+  const [checked, setChecked] = useState(false);
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
 
+    if (!firstName || !lastName || !email || !password || !confirmPassword) {
+      setError("All fields are required");
+      setLoading(false);
+      return;
+    }
 
-    const [email, setEmail] = useState('');
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
-    const [success, setSuccess] = useState(false);
-  
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      setLoading(true);
-      setError(null);
-  
-      if (!firstName || !lastName || !email || !password || !confirmPassword) {
-        setError("All fields are required");
-        setLoading(false);
-        return;
-      }
-      
-      if (password !== confirmPassword) {
-        setError("Passwords do not match");
-        setLoading(false);
-        return;
-      }
+    if (password !== confirmPassword) {
+      setError("Passwords do not match");
+      setLoading(false);
+      return;
+    }
 
-      const credentials={
-        firstName,
-        lastName,
-        email,
-        password
-      }
+    if (!checked) {
+      setError("You must agree to the Terms & Conditions and Privacy Policy");
+      setLoading(false);
+      return;
+    }
 
-     
-  
-      try {
-        const userData = await userApi.signup(credentials);
-        setSuccess(true);
-        // Optionally, you can handle redirect or other actions upon successful signup here
-      } catch (error) {
-        setError("Error signing up: " + (error.response?.data?.message || error.message));
-      } finally {
-        setLoading(false);
-      }
-    };
+    const credentials = {
+      firstName,
+      lastName,
+      email,
+      password
+    }
 
+    try {
+      const userData = await userApi.signup(credentials);
+      setSuccess(true);
+      // Optionally, you can handle redirect or other actions upon successful signup here
+    } catch (error) {
+      setError("Error signing up: " + (error.response?.data?.message || error.message));
+    } finally {
+      setLoading(false);
+    }
+  };
 
-
-    return (
-        <>
- <div
+  const handleCheckboxChange = (e) => {
+    setChecked(e.target.checked);
+  };
+  return (
+    <>
+      <div
         id="default-modal"
         aria-hidden="true"
         className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
@@ -86,18 +89,18 @@ const SignUp = ({ toggle }) => {
             <div className="input-container shadow mt-3 rounded-3xl bg-[#fafafa]">
               <img src="/Frame 33.png" className="w-6" alt="Email Icon" />
               <input
-                type="test"
+                type="text"
                 name='firstName'
+
                 placeholder="First Name"
+
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
                 className="bg-[#fafafa] "
               />
-            </div>  
-            
-            
-            
-             <div className="input-container shadow mt-3 rounded-3xl bg-[#fafafa]">
+            </div>
+
+            <div className="input-container shadow mt-3 rounded-3xl bg-[#fafafa]">
               <img src="/Frame 33.png" className="w-6" alt="Email Icon" />
               <input
                 type="text"
@@ -107,8 +110,8 @@ const SignUp = ({ toggle }) => {
                 onChange={(e) => setLastName(e.target.value)}
                 className="bg-[#fafafa] "
               />
-            </div>  
-             <div className="input-container shadow mt-3 rounded-3xl bg-[#fafafa]">
+            </div>
+            <div className="input-container shadow mt-3 rounded-3xl bg-[#fafafa]">
               <img src="/Frame 33.png" className="w-6" alt="Email Icon" />
               <input
                 type="email"
@@ -141,6 +144,23 @@ const SignUp = ({ toggle }) => {
                 className="bg-[#fafafa] "
               />
             </div>
+            <div>
+              <input
+                type="checkbox"
+                name=""
+                id=""
+                checked={checked}
+                onChange={handleCheckboxChange}
+              />
+              <span className='ms-1'>
+                I agree with the <Link to='/Terms' className='text-theme mx-1'>
+                  Term & Conditions
+                </Link>
+                and <Link to='/PrivacyPolicy' className='text-theme mx-1'>
+                  Privacy Policy
+                </Link>
+              </span>
+            </div>
 
             {error && <p className="text-red-500">{error}</p>}
             {success && <p className="text-green-500">Sign up successful!</p>}
@@ -155,8 +175,8 @@ const SignUp = ({ toggle }) => {
           </form>
         </div>
       </div>
-        </>
-    );
+    </>
+  );
 }
 
 export default SignUp;
