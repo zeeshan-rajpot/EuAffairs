@@ -10,6 +10,7 @@ const CustmerProfile = () => {
   const { getArticles } = useArticles();
   const [activeTab, setActiveTab] = useState("first");
   const [username, setUsername] = useState("");
+  const [userLastName, setUserLastName] = useState("");
   const [profileimage, setProfileimage] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -34,20 +35,22 @@ const CustmerProfile = () => {
       setLoading(true);
       const response = await userApi.getProfile();
       console.log("User data:", response?.user);
-      setUsername(response?.user?.email || "");
+      setUsername(response?.user?.firstName || "");
+      setUserLastName( response?.user?.lastName || "")
       setCategoriesState(response?.user?.interests || []);
 
       // Check if there is a profile picture in the response
       const profileImage = response?.profilePicture
         ? response.profilePicture
-        : "https://via.placeholder.com/150"; // Dummy link if no profile picture is available
+        : ""; // Dummy link if no profile picture is available
 
       // Update the profile based on the response
       setProfiles([
         {
           image: profileImage,
-          name: response?.user?.email || "", // Assuming email is used as name
+          name: response?.user?.firstName    || "", // Assuming email is used as name
           interests: response?.user?.interests || [], // Use actual interests from response
+          email: response?.user?.email || "" , // Use actual interests from response
         },
       ]);
     } catch (err) {
@@ -67,7 +70,7 @@ const CustmerProfile = () => {
   const [profiles, setProfiles] = useState([
     {
       image: "https://via.placeholder.com/150", // Default profile picture link
-      name: username,
+      name: username  ,
       interests: categoriesState,
     },
   ]);
@@ -276,7 +279,7 @@ const CustmerProfile = () => {
         <div className="col-span-8 lg:col-span-8 p-8">
           <div className="flex items-center my-4">
             <img src="/Group 1171274941.png" alt="" />
-            <p className="text-lg text-theme font-semibold mx-2">{username}</p>
+            <p className="text-lg text-theme font-semibold mx-2">{username +"   " + userLastName}</p>
             <p
               className="cursor-pointer"
               onClick={() => handleCardClick(profiles[0])}
@@ -343,6 +346,9 @@ const CustmerProfile = () => {
               </div>
               <h2 className="text-xl font-semibold mt-4">
                 {selectedCard.name}
+                <br />
+                {selectedCard.email}
+               
               </h2>
             </div>
             <div className="mt-6">
