@@ -83,7 +83,7 @@ const Navbar = () => {
                   href="#Whoarewe"
                   className="block py-2 px-3 text-white rounded  md:hover:bg-transparent md:border-0 md:p-0 dark:text-white md:dark:hover:text-blue-500 "
                 >
-                  Who are we
+                  Who we are
                 </a>
               </li>
               <li>
